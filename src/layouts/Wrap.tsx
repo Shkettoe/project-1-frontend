@@ -1,15 +1,11 @@
 import React from 'react'
 import NavBar from './NavBar'
 
-interface Props{
-    children: JSX.Element | any
-}
-
-const Wrap = (props: Props) => {
+const Wrap: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
     <>
         <NavBar/>
-        {props.children}
+        {children}
     </>
   )
 }

@@ -1,16 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
-import Register from './pages/Register'
 import './App.css'
-import Footer from './components/Footer'
+import Footer from './layouts/Footer'
+import { ButtonVars } from './assets/Vars'
+import { ButtonST } from './assets/Button.style'
 
 const App = () => {
   return (
     <div className='App'>
-      <Routes>
-        <Route path='/' element={<Register/>} />
-        <Route path='/register' element={<Register/>} />
-      </Routes>
-      <Footer/>
+        <ButtonST content='text' color={ButtonVars.white}/>
+        <Routes>
+        </Routes>
+        <Footer/>
     </div>
   )
 }
