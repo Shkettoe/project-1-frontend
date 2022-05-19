@@ -13,3 +13,9 @@ export const ButtonVars = {
         border: "2px solid #EFB467"
     }
 }
+
+export const ImgVars = {
+    large: '64px',
+    medium: '40px',
+    small: '24px'
+}

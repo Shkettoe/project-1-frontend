@@ -8,4 +8,5 @@ export interface Props {
         width?: string
     }
     width?: string
+    url?: string
 }
