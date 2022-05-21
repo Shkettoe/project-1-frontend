@@ -91,3 +91,36 @@ body{
     order: 0;
     flex-grow: 0;
 }
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 645px;
+
+    width: 80%;
+    margin: 20px auto;
+
+    height: 40px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a div{
+    color: #322D38;
+}
+
+.navbar div button{
+    /* Login */
+
+    margin: 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

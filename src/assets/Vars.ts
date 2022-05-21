@@ -12,9 +12,13 @@ export const ButtonVars = {
         fg: "#DE8667",
         border: "2px solid #EFB467"
     },
-    nobg:{
-        bg: "#fff",
+    head:{
+        bg: "rgba(0,0,0,0)",
         fg: "#DE8667"
+    },
+    head2:{
+        bg: "rgba(0,0,0,0)",
+        fg: "#fff"
     }
 }
 
