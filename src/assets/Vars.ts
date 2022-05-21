@@ -11,6 +11,10 @@ export const ButtonVars = {
         bg: "#FFFFFF",
         fg: "#DE8667",
         border: "2px solid #EFB467"
+    },
+    nobg:{
+        bg: "#fff",
+        fg: "#DE8667"
     }
 }
 

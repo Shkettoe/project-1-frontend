@@ -12,5 +12,7 @@ export const ButtonST = styled(Button)`
     background-color: ${props => props.style?.bg};
     &:hover{
         background-color: ${(props) => props.style?.bg && `#${(parseInt(props.style.bg.substring(1), 16) - parseInt('070707', 16)).toString(16)}`};
+        text-decoration: underline;
+        cursor: pointer;
     }
 `
