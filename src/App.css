@@ -122,3 +122,47 @@ a div{
     order: 0;
     flex-grow: 0;
 }
+
+h1{
+    /* Sign up title */
+
+    width: 420px;
+    height: 41px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    /* Dark */
+    color: #322D38;
+}
+
+h6{
+    /* Your name will appear on quotes and your public profle. */
+
+    width: 420px;
+    height: 19px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    /* identical to box height */
+    text-align: center;
+
+    /* Dark */
+    color: #322D38;
+}

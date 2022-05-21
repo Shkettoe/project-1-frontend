@@ -7,17 +7,18 @@ import { InputST } from './assets/Input.style'
 import { ImgST } from './assets/Img.style'
 import NavBar from './layouts/NavBar'
 import Wrap from './layouts/Wrap'
+import Register from './pages/Register'
 const img = require('./assets/images/default.png')
 
 const App = () => {
   const location = useLocation()
   return (
     <Wrap>
-        <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
+        {/* <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
         <InputST width='200px' />
-        <ImgST url={img} width={ImgVars.small} />
+        <ImgST url={img} width={ImgVars.small} /> */}
         <Routes>
-          <Route path='/register'/>
+          <Route path='/register' element={<Register/>}/>
           <Route path='/login'/>
         </Routes>
     </Wrap>

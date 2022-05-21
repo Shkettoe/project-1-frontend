@@ -7,9 +7,9 @@ const Wrap: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
     <>
         <NavBar/>
-        <Container>
-          {children}
-        </Container>
+          <Container>
+            {children}
+          </Container>
         <Footer/>
     </>
   )
