@@ -13,15 +13,13 @@ const App = () => {
   const location = useLocation()
   return (
     <Wrap>
-        <ButtonST content='text' width='81px' style={ButtonVars.head2}/>
+        <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
         <InputST width='200px' />
         <ImgST url={img} width={ImgVars.small} />
-        <div>you are here {location.pathname}</div>
         <Routes>
           <Route path='/register'/>
           <Route path='/login'/>
         </Routes>
-        <Footer/>
     </Wrap>
   )
 }
