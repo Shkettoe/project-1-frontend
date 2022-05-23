@@ -2,10 +2,11 @@ import styled from "styled-components";
 import Button from "../components/Button";
 
 export const ButtonST = styled(Button)`
-    height: 40px;
+    box-sizing: content-box;
+    height: ${props => props.height || "40px"};
     font-size: 16px;
     width: ${props => props.width || "auto"};
-    padding: 8px 16px;
+    padding: 4px 30px 4px 24px;
     border-radius: 32px;
     border: ${props => props.style?.border || "none"};
     color: ${props => props.style?.fg};

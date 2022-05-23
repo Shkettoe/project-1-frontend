@@ -3,19 +3,17 @@ import styled from 'styled-components'
 
 const Container: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
-    <div style={{"width": "100%", "margin": "auto"}}>
-        <ContainerST>
-            {children}
-        </ContainerST>
-    </div>
+    <ContainerST>
+        {children}
+    </ContainerST>
   )
 }
 
 const ContainerST = styled.div`
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 130px;
 `
 
 export default Container

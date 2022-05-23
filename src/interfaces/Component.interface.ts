@@ -1,6 +1,7 @@
 export interface Props {
     content?: string
     className?: string
+    name?: string
     style?: {
         bg?: string,
         fg?: string,
@@ -8,5 +9,6 @@ export interface Props {
         width?: string
     }
     width?: string
+    height?: string
     url?: string
 }

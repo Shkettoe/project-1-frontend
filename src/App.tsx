@@ -1,26 +1,27 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Footer from './layouts/Footer'
-import { ButtonVars, ImgVars } from './assets/Vars'
 import { ButtonST } from './assets/Button.style'
-import { InputST } from './assets/Input.style'
 import { ImgST } from './assets/Img.style'
-import NavBar from './layouts/NavBar'
+import { InputST } from './assets/Input.style'
+import { ButtonVars, ImgVars } from './assets/Vars'
 import Wrap from './layouts/Wrap'
 import Register from './pages/Register'
-const img = require('./assets/images/default.png')
+import Test from './pages/Test'
 
 const App = () => {
-  const location = useLocation()
   return (
     <Wrap>
-        {/* <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
-        <InputST width='200px' />
-        <ImgST url={img} width={ImgVars.small} /> */}
-        <Routes>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/login'/>
-        </Routes>
+      {/* <div>
+        <p>
+          <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
+          <InputST width='200px' />
+        </p>
+      </div> */}
+      <Routes>
+        <Route path='/home' element={<Test/>}/>
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' />
+      </Routes>
     </Wrap>
   )
 }

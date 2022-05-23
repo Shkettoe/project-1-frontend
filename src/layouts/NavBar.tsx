@@ -19,14 +19,14 @@ const NavBar = () => {
   const btns = () => {
     switch(location){
       case "/register":
-        return <NavLink to={'/login'}><ButtonST width='137px' content='Login' style={ButtonVars.white}/></NavLink>
+        return <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
       case "/login":
-        return <NavLink to={'/register'}><ButtonST width='137px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
+        return <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
       default:
         return (
           <div style={{"display": "flex"}}>
-            <NavLink to={'/register'}><ButtonST width='137px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
-            <NavLink to={'/login'}><ButtonST width='137px' content='Login' style={ButtonVars.white}/></NavLink>
+            <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
+            <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
           </div>
         )  
     }
