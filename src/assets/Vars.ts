@@ -12,6 +12,11 @@ export const ButtonVars = {
         fg: "#DE8667",
         border: "2px solid #EFB467"
     },
+    white2:{
+        bg: "#FFFFFF",
+        fg: "#DE8667",
+        border: "2px solid #DE8667"
+    },
     head:{
         bg: "rgba(0,0,0,0)",
         fg: "#DE8667"

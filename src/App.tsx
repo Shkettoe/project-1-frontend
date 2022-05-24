@@ -1,10 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import { ButtonST } from './assets/Button.style'
-import { ImgST } from './assets/Img.style'
-import { InputST } from './assets/Input.style'
-import { ButtonVars, ImgVars } from './assets/Vars'
 import Wrap from './layouts/Wrap'
+import Login from './pages/Login'
 import Register from './pages/Register'
 import Test from './pages/Test'
 
@@ -20,7 +17,7 @@ const App = () => {
       <Routes>
         <Route path='/home' element={<Test/>}/>
         <Route path='/register' element={<Register />} />
-        <Route path='/login' />
+        <Route path='/login' element={<Login/>} />
       </Routes>
     </Wrap>
   )
