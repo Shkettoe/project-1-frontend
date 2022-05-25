@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import Input from './components/Input'
 import Wrap from './layouts/Wrap'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -12,7 +13,7 @@ const App = () => {
         <p>
           <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
           <InputST width='200px' />
-        </p>
+      </p>
       </div> */}
       <Routes>
         <Route path='/home' element={<Test/>}/>

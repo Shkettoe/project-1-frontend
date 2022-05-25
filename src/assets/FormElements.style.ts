@@ -1,5 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Input from "../components/Input";
+
+export const scss = css`
+  font-size: 80px;
+`
 
 export const InputST = styled(Input)`
     padding: 8px 30px 8px 24px;

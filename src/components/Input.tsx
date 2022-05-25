@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { LegacyRef } from 'react'
 import { Props } from '../interfaces/Component.interface'
 
-const Input: React.FC<Props> = ({className, name}) => {
+const Input: React.FC<Props> = ({className, type, name, register}) => {
   return (
-      <input className={className} type="text" />
+      <input {...register(name)} className={className} type={type || "text"} />
   )
 }
 

@@ -53,7 +53,7 @@ body{
     padding: 0px 72px;
     gap: 82px;
 
-    width: 1440px;
+    /* width: 1440px; */
     height: 25px;
 
 
@@ -65,7 +65,7 @@ body{
 }
 
 .footer div p {
-    width: 1181px;
+    /* width: 1181px; */
     height: 14px;
 
     font-family: 'Raleway';

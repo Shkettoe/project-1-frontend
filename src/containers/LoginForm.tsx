@@ -1,17 +1,33 @@
 import { ButtonST } from '../assets/Button.style'
 import { Form, InputST, Label } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { LoginSchema } from '../validation/schemas/Login.schema'
+import ErrorMsg from '../validation/ErrorMsg'
+import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<{email: string, password: string}>({
+    resolver: yupResolver(LoginSchema)
+  })
+
+  const submit = handleSubmit((data, event) => {
+    event?.preventDefault()
+    console.log(data)
+  })
+  
   return (
-    <Form>
+    <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>
-          <InputST width='420px' name='email' />
+          <InputST width='420px' name='email' register={register}/>
+          <ErrorMsg content={errors.email?.message || ''} />
         </div>
         <div>
-          <Label htmlFor="pswd"><p>Password</p></Label>
-          <InputST width='420px' name='pswd' />
+          <Label htmlFor="password"><p>Password</p></Label>
+          <InputST width='420px' name='password' register={register} type='password' />
+          <ErrorMsg content={errors.password?.message || ''} />
         </div>
         <div style={{"marginTop": "16px"}}>
           <ButtonST content='Login' width='420px' style={ButtonVars.white2}/>
@@ -21,9 +37,9 @@ const LoginForm = () => {
             <p>
               Don't have an account?
             </p>
-            <p style={{"color": `${ButtonVars.lightorange.bg}`}}>
+            <Link to={'/register'} style={{"color": `${ButtonVars.lightorange.bg}`}}>
               Sign up!
-            </p>
+            </Link>
           </div>
         </div>
     </Form>

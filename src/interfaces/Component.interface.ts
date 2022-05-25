@@ -2,6 +2,8 @@ export interface Props {
     content?: string
     className?: string
     name?: string
+    register?: any
+    type?: string
     style?: {
         bg?: string,
         fg?: string,
