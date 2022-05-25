@@ -1,11 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
+import Container from '../components/Container'
+import Footer from './Footer'
 import NavBar from './NavBar'
 
 const Wrap: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
     <>
         <NavBar/>
-        {children}
+        <Container>
+            {children}
+        </Container>
+        <Footer/>
     </>
   )
 }

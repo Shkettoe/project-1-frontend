@@ -1,31 +1,39 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    /* box-sizing: border-box; */
+}
+
 html, body{
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 body{
     min-height: 100vh;
-    position: relative;
-    text-align: center;
+    min-width: 100%;
+    position: absolute;
+}
+
+#root{
+    min-height: 100vh;
 }
 
 .footer {
     /* Footer */
 
     /* Auto layout */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 32px 0px;
-    gap: 16px;
 
     position: absolute;
     left: 0px;
     right: 0px;
-    /* top: 86.6vh; */
-    bottom: 0%;
-    min-height: 60px;
-    max-height: 60px;
+    bottom: 0px;
+    height: 56px;
 
     /* Orange */
     background: #DE8667;
@@ -45,7 +53,7 @@ body{
     padding: 0px 72px;
     gap: 82px;
 
-    width: 1440px;
+    /* width: 1440px; */
     height: 25px;
 
 
@@ -57,7 +65,7 @@ body{
 }
 
 .footer div p {
-    width: 1181px;
+    /* width: 1181px; */
     height: 14px;
 
     font-family: 'Raleway';
@@ -101,7 +109,8 @@ body{
     gap: 645px;
 
     width: 80%;
-    margin: 20px auto;
+    padding: 24px 0px;
+    margin: auto;
 
     height: 40px;
 }
@@ -123,4 +132,48 @@ a div{
     flex: none;
     order: 0;
     flex-grow: 0;
+}
+
+h1{
+    /* Sign up title */
+
+    width: 420px;
+    height: 41px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    /* Dark */
+    color: #322D38;
+}
+
+h6{
+    /* Your name will appear on quotes and your public profle. */
+
+    width: 420px;
+    height: 19px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    /* identical to box height */
+    text-align: center;
+
+    /* Dark */
+    color: #322D38;
 }
