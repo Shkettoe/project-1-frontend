@@ -1,12 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import { InputST } from '../assets/FormElements.style'
-import RegisterForm from '../containers/RegisterForm'
+import { ButtonST } from '../assets/Button.style'
+import { ButtonVars } from '../assets/Vars'
 
 const Test = () => {
     return (
         <div>
-            
+            <div><ButtonST height='200px' content='button' style={ButtonVars.white} /></div>
+            <div><ButtonST height='200px' content='button' style={ButtonVars.white} /></div>
+            <div><ButtonST height='200px' content='button' style={ButtonVars.white} /></div>
+            <div><ButtonST height='200px' content='button' style={ButtonVars.white} /></div>
+            <div><ButtonST height='200px' content='button' style={ButtonVars.white} /></div>
         </div>
     )
 }
