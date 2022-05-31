@@ -1,5 +1,4 @@
 import React from 'react'
-import pic from '../assets/images/default.png'
 import upvote from '../assets/icons/upvote.svg'
 import downvote from '../assets/icons/downvote.svg'
 import styled from 'styled-components'
@@ -14,7 +13,7 @@ interface Props{
     img?: string,
 }
 
-const QuoteCard: React.FC<Props> = ({content, score, author, img = pic}) => {
+const QuoteCard: React.FC<Props> = ({content, score, author, img}) => {
   return (
     <Card>
         <div>
@@ -35,7 +34,7 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img = pic}) => {
 const Card = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-self: flex-start;
     gap: 21px;
     width: 420px;
     min-height: 131px;
