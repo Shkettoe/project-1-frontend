@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Input from './components/Input'
 import Wrap from './layouts/Wrap'
+import FrontPage from './pages/FrontPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Test from './pages/Test'
@@ -16,7 +17,7 @@ const App = () => {
       </p>
       </div> */}
       <Routes>
-        <Route path='/home' element={<Test/>}/>
+        <Route path={'/'} element={<FrontPage/>}/>
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login/>} />
       </Routes>

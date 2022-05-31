@@ -8,10 +8,15 @@ html, body{
     min-height: 100vh;
 }
 
-body{
+body, #root{
+    box-sizing: border-box;
     min-height: 100vh;
-    min-width: 100%;
+    /* min-width: 100vw; */
+    padding: 0px;
+    margin: 0px;
     position: absolute;
+    right: 0px;
+    left: 0px;
 }
 
 #root{
@@ -102,17 +107,28 @@ body{
 
 .navbar{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     padding: 0px;
     gap: 645px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
 
-    width: 80%;
+    position: absolute;
     padding: 24px 0px;
-    margin: auto;
+    margin: 0%;
+    padding: 0%;
 
-    height: 40px;
+    height: 80px;
+}
+
+.navbar div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
 }
 
 a{
@@ -123,7 +139,7 @@ a div{
     color: #322D38;
 }
 
-.navbar div button{
+.navbar div div button{
     /* Login */
 
     margin: 10px;

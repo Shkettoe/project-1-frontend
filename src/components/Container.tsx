@@ -10,7 +10,7 @@ const Container: React.FC<{children: React.ReactNode}> = ({children}) => {
 }
 
 const ContainerST = styled.div`
-    margin-top: 40px;
+    margin-top: 80px;
     max-height: 100%;
     display: flex;
     align-items: center;

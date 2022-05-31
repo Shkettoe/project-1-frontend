@@ -7,7 +7,7 @@ const img = require('../assets/images/qotd.png')
 
 const Test = () => {
     return (
-        <Content>
+        <Content style={{"marginBottom": "200px"}}>
                 <Grid>
                     <div>
                         <Heading>
