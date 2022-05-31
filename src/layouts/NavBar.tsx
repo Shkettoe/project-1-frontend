@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import { ButtonST } from '../assets/Button.style'
 import { ImgST } from '../assets/Img.style'
 import { ButtonVars, ImgVars } from '../assets/Vars'
@@ -19,25 +20,38 @@ const NavBar = () => {
   const btns = () => {
     switch(location){
       case "/register":
-        return <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
+        return (<AnchorContainer>
+          <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
+        </AnchorContainer>)
       case "/login":
-        return <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
+        return (<AnchorContainer>
+            <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
+          </AnchorContainer>
+        )
       default:
         return (
-          <div style={{"display": "flex"}}>
+          <AnchorContainer style={{"display": "", "justifyContent": "center"}}>
             <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
             <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
-          </div>
+          </AnchorContainer>
         )  
     }
   }
 
   return (
     <nav className='navbar'>
-      <NavLink to={'/home'}><ImgST url={logo} /></NavLink>
-      {btns()}
+      <div>
+        <div>
+          <NavLink to={'/'}><ImgST url={logo} /></NavLink>
+        </div>
+        {btns()}
+      </div>
     </nav>
   )
 }
+
+const AnchorContainer = styled.div`
+  width: auto !important;
+`
 
 export default NavBar

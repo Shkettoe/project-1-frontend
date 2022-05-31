@@ -5,9 +5,9 @@ import { Form, FormContainer } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 const img = require('../assets/images/qotd.png')
 
-const Test = () => {
+const WtfLol = () => {
     return (
-        <Content style={{"marginBottom": "200px"}}>
+        <Content>
                 <Grid>
                     <div>
                         <Heading>
@@ -23,13 +23,8 @@ const Test = () => {
                     </div>
                 </Grid>
                 <h1 style={{'fontSize': "61px", "width": "703px", "marginBottom": "124px"}}>Explore the world of <OrangeText>fantastic quotes</OrangeText></h1>
-                <p style={{"textAlign":"center", "fontSize": "16px", "width": "534px"}}>Most upvoted quotes on the platform. Sign up or login to like the quotes and keep them saved in your profile</p>
-                <Grid2>
-                    <div>foikrsakg</div>
-                    <div>foikrsakg</div>
-                    <div>foikrsakg</div>
-                </Grid2>
-                <ButtonST height='40px' width='184px' style={ButtonVars.white} content='Sign up to see more'/>
+                <h1>gpoksgk</h1>
+                {/* <h1>gpoksgk</h1> */}
         </Content>
     )
 }
@@ -49,13 +44,6 @@ const Grid = styled.div`
     }
 `
 
-const Grid2 = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 80px;
-`
-
 const Heading = styled.p`
     height: 180px;
     font-family: 'Raleway';
@@ -64,4 +52,4 @@ const Heading = styled.p`
     font-size: 80px !important;
 `
 
-export default Test
+export default WtfLol

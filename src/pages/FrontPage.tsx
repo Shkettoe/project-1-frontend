@@ -5,7 +5,7 @@ import { Form, FormContainer } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 const img = require('../assets/images/qotd.png')
 
-const Test = () => {
+const FrontPage = () => {
     return (
         <Content style={{"marginBottom": "200px"}}>
                 <Grid>
@@ -64,4 +64,4 @@ const Heading = styled.p`
     font-size: 80px !important;
 `
 
-export default Test
+export default FrontPage
