@@ -6,15 +6,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginSchema } from '../validation/schemas/Login.schema'
 import ErrorMsg from '../validation/ErrorMsg'
 import { Link } from 'react-router-dom'
+import { LoginService } from '../services/Login.service'
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, password: string}>({
     resolver: yupResolver(LoginSchema)
   })
 
-  const submit = handleSubmit((data, event) => {
+  const submit = handleSubmit(async (credentials, event) => {
     event?.preventDefault()
-    console.log(data)
+    const data = await LoginService(credentials)
+    console.log(data.response.data.error.status);
+    
   })
   
   return (
