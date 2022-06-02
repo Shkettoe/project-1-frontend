@@ -5,20 +5,28 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginSchema } from '../validation/schemas/Login.schema'
 import ErrorMsg from '../validation/ErrorMsg'
-import { Link } from 'react-router-dom'
-import { LoginService } from '../services/Login.service'
+import { Link, Navigate } from 'react-router-dom'
+import { Check } from '../helpers/CheckCredentials.helper'
+import { useEffect, useState } from 'react'
 
 const LoginForm = () => {
+  const [msg, setMsg] = useState("")
+  const [red, setRed] = useState(false)
+
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, password: string}>({
     resolver: yupResolver(LoginSchema)
   })
 
   const submit = handleSubmit(async (credentials, event) => {
     event?.preventDefault()
-    const data = await LoginService(credentials)
-    console.log(data.response.data.error.status);
-    
+    await setMsg(await Check(credentials))
   })
+
+  useEffect(() => {
+    if(!msg.length) setRed(true)
+  }, [msg])
+
+  if(red) return (<Navigate to={'/'}/>)
   
   return (
     <Form onSubmit={submit}>
@@ -34,6 +42,7 @@ const LoginForm = () => {
         </div>
         <div style={{"marginTop": "16px"}}>
           <ButtonST content='Login' width='420px' style={ButtonVars.white2}/>
+          <ErrorMsg content={msg} />
         </div>
         <div style={{"marginTop": "18px"}}>
           <div>
