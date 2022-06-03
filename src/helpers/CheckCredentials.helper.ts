@@ -9,6 +9,5 @@ export const Check = async (credentials: LoginInterface) => {
     if(data.response && data.response?.data?.error?.status === 404) setMsg("User with that email cannot be found")
     else if(data.response && data.response?.data?.error?.status === 401) setMsg("Incorrect password")
 
-    console.log(msg)
-    return msg
+    return {msg, data}
 }

@@ -8,10 +8,14 @@ import ErrorMsg from '../validation/ErrorMsg'
 import { Link, Navigate } from 'react-router-dom'
 import { Check } from '../helpers/CheckCredentials.helper'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../interfaces/models/reducers/User.reducer'
+import { GetMe } from '../services/Me.service'
 
 const LoginForm = () => {
   const [msg, setMsg] = useState(" ")
   const [red, setRed] = useState(false)
+  const dispatch = useDispatch()
 
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, password: string}>({
     resolver: yupResolver(LoginSchema)
@@ -19,11 +23,17 @@ const LoginForm = () => {
 
   const submit = handleSubmit(async (credentials, event) => {
     event?.preventDefault()
-    await setMsg(await Check(credentials))
+    await setMsg((await Check(credentials)).msg)
   })
 
   useEffect(() => {
-    if(!msg.length) setRed(true)
+    if(!msg.length) {
+      (async() => {
+        const {data} = await GetMe()
+        dispatch(setUser(data))
+      })()
+      setRed(true)
+    }
   }, [msg])
   
   return (!red ? 

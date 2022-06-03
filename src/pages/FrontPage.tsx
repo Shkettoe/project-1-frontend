@@ -1,21 +1,14 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import { ButtonST } from '../assets/Button.style'
 import { Content, Grid, Grid2, Heading, OrangeText } from '../assets/Common.style'
-import { Form, FormContainer } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 import QuoteCard from '../components/QuoteCard'
 import pic from '../assets/images/default.png'
 import { PostsHelper } from '../helpers/Posts.helper'
-import { GetCookie } from '../helpers/Cookie.helper'
 const img = require('../assets/images/qotd.png')
 
 const FrontPage = () => {
     const quotes = PostsHelper()
-    const cookie = GetCookie()
-    console.log(cookie)
 
     return (
         <Content style={{"marginBottom": "200px"}}>
