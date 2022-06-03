@@ -34,7 +34,7 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img}) => {
 const Card = styled.div`
     display: flex;
     flex-direction: row;
-    align-self: flex-start;
+    align-self: stretch;
     gap: 21px;
     width: 420px;
     min-height: 131px;

@@ -10,7 +10,7 @@ import ErrorMsg from '../validation/ErrorMsg'
 import { RegisterSchema } from '../validation/schemas/Register.schema'
 
 const RegisterForm = () => {
-  const [msg, setMsg] = useState("")
+  const [msg, setMsg] = useState("0")
   const [red, setRed] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, first_name: string, last_name: string, password: string, confirm_password: string}>({
@@ -26,9 +26,7 @@ const RegisterForm = () => {
     if(!msg.length) setRed(true)
   }, [msg])
 
-  if(red) return <Navigate to={'/'}/>
-
-  return (
+  return (red ?
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>
@@ -74,7 +72,7 @@ const RegisterForm = () => {
           </div>
         </div>
     </Form>
-  )
+  : <Navigate to={'/'}/>)
 }
 
 export default RegisterForm

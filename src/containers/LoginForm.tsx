@@ -10,7 +10,7 @@ import { Check } from '../helpers/CheckCredentials.helper'
 import { useEffect, useState } from 'react'
 
 const LoginForm = () => {
-  const [msg, setMsg] = useState("")
+  const [msg, setMsg] = useState(" ")
   const [red, setRed] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, password: string}>({
@@ -25,10 +25,8 @@ const LoginForm = () => {
   useEffect(() => {
     if(!msg.length) setRed(true)
   }, [msg])
-
-  if(red) return (<Navigate to={'/'}/>)
   
-  return (
+  return (!red ? 
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>
@@ -55,7 +53,7 @@ const LoginForm = () => {
           </div>
         </div>
     </Form>
-  )
+  : <Navigate to={'/'}/>)
 }
 
 export default LoginForm
