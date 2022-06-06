@@ -6,7 +6,7 @@ import { ImgST } from '../assets/Img.style'
 import { ButtonVars, ImgVars } from '../assets/Vars'
 import { Logout } from '../helpers/Logout.helper'
 import { unsetUser } from '../interfaces/models/reducers/User.reducer'
-const img = require('../assets/images/default.png')
+import plus from '../assets/icons/plus.svg'
 const logo = require('../assets/images/Logo.png')
 
 const NavBar = () => {
@@ -15,12 +15,15 @@ const NavBar = () => {
   const dispatch = useDispatch()
 
   const authBtns = () =>
-  <div style={{"display": "flex"}}>
-    <NavLink to={'/home'}><ButtonST content='Home' style={ButtonVars.head} /></NavLink>
-    <NavLink to={'/settings'}><ButtonST content='Settings' style={ButtonVars.head} /></NavLink>
-    <NavLink to={'/login'} onClick={() => {Logout(); dispatch(unsetUser())}}><ButtonST width='100px' height='30px' content='Logout' style={ButtonVars.head}/></NavLink>
-    <NavLink style={{"display" : "flex", "alignItems": "center"}} to={'/home'}><ImgST url={img} width={ImgVars.medium} /></NavLink>
-  </div>
+  <AnchorContainer>
+    <div>
+        <NavLink to={'/home'}><ButtonST content='Home' style={ButtonVars.head} /></NavLink>
+        <NavLink to={'/settings'}><ButtonST content='Settings' style={ButtonVars.head} /></NavLink>
+        <NavLink to={'/login'} onClick={() => {Logout(); dispatch(unsetUser())}}><ButtonST content='Logout' style={ButtonVars.head}/></NavLink>
+        <NavLink style={{"display" : "flex", "alignItems": "center", "marginRight": "24px"}} to={'/home'}><ImgST url={user.avatar} width={ImgVars.medium} /></NavLink>
+        <NavLink to={'/'}><ImgST url={plus} width={ImgVars.small}/></NavLink>
+    </div>
+  </AnchorContainer>
 
   const btns = () => {
     switch(location){
@@ -35,7 +38,7 @@ const NavBar = () => {
         )
       default:
         return (
-          <AnchorContainer style={{"display": "", "justifyContent": "center"}}>
+          <AnchorContainer>
             <NavLink to={'/register'}><ButtonST width='100px' height='30px' content='Sign up' style={ButtonVars.darkorange}/></NavLink>
             <NavLink to={'/login'}><ButtonST width='100px' height='30px' content='Login' style={ButtonVars.white}/></NavLink>
           </AnchorContainer>
@@ -46,9 +49,7 @@ const NavBar = () => {
   return (
     <nav className='navbar'>
       <div>
-        <div>
-          <NavLink to={'/'}><ImgST url={logo} /></NavLink>
-        </div>
+        <div><NavLink to={'/'}><ImgST url={logo} /></NavLink></div>
         {!user ? btns() : authBtns()}
       </div>
     </nav>

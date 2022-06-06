@@ -8,11 +8,9 @@ export const userReducer = createSlice({
     reducers: {
         setUser: (state, action) => {
             state.value = action.payload
-            console.log(state.value)
         },
         unsetUser: (state) => {
             state.value = EmptyUser
-            console.log(state.value)
         }
     }
 })

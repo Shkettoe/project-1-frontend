@@ -30,9 +30,10 @@ const App = () => {
       </p>
       </div> */}
       <Routes>
-        <Route path={'/'} element={<FrontPage/>}/>
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='' element={<FrontPage/>}/>
+        <Route path='home' element={<FrontPage/>}/>
+        <Route path='register' element={<Register />} />
+        <Route path='login' element={<Login/>} />
       </Routes>
     </Wrap>
   )

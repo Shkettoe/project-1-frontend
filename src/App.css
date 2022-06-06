@@ -132,6 +132,14 @@ body, #root{
     margin: auto;
 }
 
+button{
+    padding: 0px;
+    margin: 0px;
+    background: none;
+    border: none;
+    text-decoration: none;
+}
+
 a{
     text-decoration: none;
 }
