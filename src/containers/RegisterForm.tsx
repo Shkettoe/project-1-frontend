@@ -1,17 +1,21 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Form, InputST, Label } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 import { Validate } from '../helpers/ValidateRegisterData.helper'
+import { setUser } from '../interfaces/models/reducers/User.reducer'
+import { GetMe } from '../services/Me.service'
 import ErrorMsg from '../validation/ErrorMsg'
 import { RegisterSchema } from '../validation/schemas/Register.schema'
 
 const RegisterForm = () => {
   const [msg, setMsg] = useState("0")
   const [red, setRed] = useState(false)
+  const dispatch = useDispatch()
 
   const { register, handleSubmit, formState: { errors } } = useForm<{email: string, first_name: string, last_name: string, password: string, confirm_password: string}>({
     resolver: yupResolver(RegisterSchema)
@@ -23,7 +27,13 @@ const RegisterForm = () => {
   })
 
   useEffect(() => {
-    if(!msg.length) setRed(true)
+    if(!msg.length) {
+      (async() => {
+        const {data} = await GetMe()
+        dispatch(setUser(data))
+      })()
+      setRed(true)
+    }
   }, [msg])
 
   return (red ?
