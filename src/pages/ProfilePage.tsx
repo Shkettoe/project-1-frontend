@@ -14,6 +14,7 @@ const ProfilePage = () => {
 }
 
 const Profile = styled.div`
+    margin-top: 80px;
     border: 1px solid #cde;
     padding: 32px;
     border-radius: 20px;

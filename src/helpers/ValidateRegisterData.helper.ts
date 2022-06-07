@@ -6,7 +6,6 @@ export const Validate = async(input: RegisterInterface) =>{
     const setMsg = (m: string) => {msg = m}
 
     const data = await RegisterService(input)
-    console.log(data)
     if(data.response && data.response?.data?.statusCode === 400) setMsg("User with that email already exists")
     return msg
 }
