@@ -6,6 +6,7 @@ import { setUser } from './interfaces/models/reducers/User.reducer'
 import Wrap from './layouts/Wrap'
 import FrontPage from './pages/FrontPage'
 import Login from './pages/Login'
+import ProfilePage from './pages/ProfilePage'
 import Register from './pages/Register'
 import { GetMe } from './services/Me.service'
 
@@ -30,6 +31,7 @@ const App = () => {
       <Routes>
         <Route path='' element={<FrontPage/>}/>
         <Route path='home' element={<FrontPage/>}/>
+        <Route path='settings' element={<ProfilePage/>}/>
         <Route path='register' element={<Register />} />
         <Route path='login' element={<Login/>} />
       </Routes>

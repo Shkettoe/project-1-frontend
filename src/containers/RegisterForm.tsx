@@ -13,7 +13,7 @@ import ErrorMsg from '../validation/ErrorMsg'
 import { RegisterSchema } from '../validation/schemas/Register.schema'
 
 const RegisterForm = () => {
-  const [msg, setMsg] = useState("0")
+  const [msg, setMsg] = useState(" ")
   const [red, setRed] = useState(false)
   const dispatch = useDispatch()
 
@@ -36,7 +36,7 @@ const RegisterForm = () => {
     }
   }, [msg])
 
-  return (red ?
+  return (!red ?
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>

@@ -22,6 +22,7 @@ export const FormContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 16px;
 `
 
 export const Form = styled.form`
@@ -29,16 +30,16 @@ export const Form = styled.form`
   & div{
     margin-top: 8px;
     & div {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      flex-direction: row;
-      gap: 16px;
-      justify-content: space-between;
       & div{
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        display: block;
+        margin-right: 22px;
+        display: flex;
+        flex-direction: column;
+        & p {
+          min-width: 100%;
+        }
       }
     }
   }
