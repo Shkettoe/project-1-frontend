@@ -112,6 +112,10 @@ export const LoggedIn = () => {
                 })}
             </Grid2>
             <a onClick={()=>increaseLimit()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
+            <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most recent quotes</OrangeText></h1>
+            <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Recent quotes updates as soon user adds new quote. Go ahed 
+show them that you seen the new quote and like the ones you
+like.</p>
             <Grid2 style={{"marginBottom": "52px"}}>
                 {recent.map((q: Quote) => {
                     return (

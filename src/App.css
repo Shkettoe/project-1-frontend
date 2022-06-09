@@ -25,6 +25,11 @@ body, #root{
     overflow: hidden;
 }
 
+a{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 .footer {
     /* Footer */
 

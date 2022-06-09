@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Content, OrangeText } from '../assets/Common.style'
+import PasswordForm from '../containers/PasswordForm'
 import ProfileForm from '../containers/ProfileForm'
 
 const ProfilePage = () => {
+  const render = useLocation().pathname.split('/')[useLocation().pathname.split('/').length-1]
+
+  const component = () => {
+    switch(render){
+      case "settings": return <ProfileForm/>
+      case "password": return <PasswordForm/>
+      case "avatar": return <>avatar</>
+    }
+  }
+
   return (
     <Profile>
         <p className='title'>Profile <OrangeText>settings</OrangeText></p>
-        <div>Change your profile settings</div>
-        <ProfileForm/>
+        <div>Change your profile {render}</div>
+        {component()}
     </Profile>
   )
 }

@@ -50,7 +50,7 @@ const NavBar = () => {
     <nav className='navbar'>
       <div>
         <div><NavLink to={'/'}><ImgST url={logo} /></NavLink></div>
-        {!user ? btns() : authBtns()}
+        {user ? authBtns() : btns()}
       </div>
     </nav>
   )
