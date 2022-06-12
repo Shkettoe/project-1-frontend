@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
+import { QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
 import { Quote } from '../interfaces/models/Quote.interface'
 
 export const PostsHelper = () => {
@@ -14,26 +14,38 @@ export const PostsHelper = () => {
     return {quotes}
 }
 
-export const MostUpvoted = (limit: number) => {
+export const MostUpvoted = () => {
+    const [limit, setLimit] = useState(3)
     const [quotes, setQuotes] = useState([])
     useEffect(()=>{
-        (async()=>{
-            setQuotes(await QuotesScoreDesc(limit))
+        (async () => {
+            const qts = await QuotesScoreDesc(limit)
+            setQuotes(qts)
         })()
-    }, [])
+    }, [limit])
 
-    return {quotes}
+    const increaseLimitQ = () =>{
+        setLimit(prevLimit => prevLimit + 3)
+    }
+
+    return {quotes, increaseLimitQ};
 }
 
-export const RecentQuotes = (limit: number) => {
-    const [recent, setRecent] = useState([])
+export const RecentQuotes = () => {
+    const [limit, setLimit] = useState(3)
+    const [recent, setQuotes] = useState([])
     useEffect(()=>{
-        (async()=>{
-            setRecent(await QuotesRecent(limit))
+        (async () => {
+            const qts = await QuotesScoreDesc(limit)
+            setQuotes(qts)
         })()
-    }, [])
+    }, [limit])
 
-    return {recent}
+    const increaseLimitR = () =>{
+        setLimit(prevLimit => prevLimit + 3)
+    }
+
+    return {recent, increaseLimitR};
 }
 
 export const RandomQuoteHelper = () => {

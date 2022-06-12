@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Content, Grid, Heading, OrangeText, Grid2 } from '../assets/Common.style'
@@ -6,6 +6,7 @@ import { ButtonVars } from '../assets/Vars'
 import QuoteCard from '../components/QuoteCard'
 import { MostUpvoted, PostsHelper, RandomQuoteHelper, RecentQuotes } from '../helpers/Posts.helper'
 import { Quote } from '../interfaces/models/Quote.interface'
+import { QuotesRecent, QuotesScoreDesc } from '../services/Posts.get'
 
 const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
     const {quotes} = PostsHelper()
@@ -86,13 +87,8 @@ const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
 
 export const LoggedIn = () => {
     const {quote} = RandomQuoteHelper()
-    const [limit, setLimit] = useState(3)
-    var {quotes} = MostUpvoted(limit)
-    var {recent} = RecentQuotes(limit)
-
-    const increaseLimit = () =>{
-        setLimit(prevLimit => prevLimit + 3)
-    }
+    const {quotes, increaseLimitQ} = MostUpvoted()
+    const {recent, increaseLimitR} = RecentQuotes()
 
     return (
         <Content>
@@ -111,19 +107,19 @@ export const LoggedIn = () => {
                     )
                 })}
             </Grid2>
-            <a onClick={()=>increaseLimit()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
+            <a onClick={()=>increaseLimitQ()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
             <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most recent quotes</OrangeText></h1>
             <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Recent quotes updates as soon user adds new quote. Go ahed 
 show them that you seen the new quote and like the ones you
 like.</p>
             <Grid2 style={{"marginBottom": "52px"}}>
-                {recent.map((q: Quote) => {
+                {recent.map((q: any) => {
                     return (
                         <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.content} score={q.score} />
                     )
                 })}
             </Grid2>
-            <a onClick={()=>increaseLimit()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
+            <a onClick={()=>increaseLimitR()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
         </Content>
     )
 }
