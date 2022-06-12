@@ -1,8 +1,6 @@
-import { useDispatch } from "react-redux"
-import { unsetUser } from "../interfaces/models/reducers/User.reducer"
-import { LogoutService } from "../services/Logout.service"
+import { PostRequest } from "../services/PostRequest.service"
 
 export const Logout = async() =>{
-    const data = await LogoutService()
+    const data = await PostRequest('users/logout')
     return data
 }

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { Content, OrangeText } from '../assets/Common.style'
+import { OrangeText } from '../assets/Common.style'
 import PasswordForm from '../containers/PasswordForm'
+import PictureForm from '../containers/PictureForm'
 import ProfileForm from '../containers/ProfileForm'
 
 const ProfilePage = () => {
@@ -12,14 +12,13 @@ const ProfilePage = () => {
     switch(render){
       case "settings": return <ProfileForm/>
       case "password": return <PasswordForm/>
-      case "avatar": return <>avatar</>
+      case "avatar": return <PictureForm/>
     }
   }
 
   return (
     <Profile>
         <p className='title'>Profile <OrangeText>settings</OrangeText></p>
-        <div>Change your profile {render}</div>
         {component()}
     </Profile>
   )
@@ -31,7 +30,7 @@ const Profile = styled.div`
     padding: 32px;
     border-radius: 20px;
     width: 593px;
-    height: 440px;
+    max-height: 440px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

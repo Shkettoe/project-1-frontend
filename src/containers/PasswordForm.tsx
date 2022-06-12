@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { NavLink, Navigate } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
-import { Form, Label, InputST } from '../assets/FormElements.style'
+import { Form, Label, InputST, Subtitle } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
+import Saved from '../components/Saved'
 import { ValidatePassword } from '../helpers/ValidateProfileEdit.helper'
 import { Password } from '../interfaces/models/EditProfile.interface'
 import { GetMe } from '../services/Me.service'
@@ -12,13 +13,6 @@ import ErrorMsg from '../validation/ErrorMsg'
 import { PasswordSchema } from '../validation/schemas/PasswordSchema'
 
 const PasswordForm = () => {
-    const [data, setData] = useState({current_password: "", password: "", confirm_password: ""})
-    useEffect(()=>{
-        (async ()=>{
-            var {data} = await GetMe()
-            setData(data)
-        })()
-    })
     const [msg, setMsg] = useState(" ")
     const [red, setRed] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm<Password>({
@@ -34,19 +28,20 @@ const PasswordForm = () => {
 
     return (!red ?
         <Form onSubmit={submit}>
+            <Subtitle>Change your profile settings</Subtitle>
             <div>
                 <Label htmlFor="current_password"><p>Current Password</p></Label>
-                <InputST type='password' value={data.current_password} height='40px' width='529px' name='current_password' register={register} />
+                <InputST type='password' height='40px' width='529px' name='current_password' register={register} />
                 <ErrorMsg content={errors.current_password?.message || ''} />
             </div>
             <div>
                 <Label htmlFor="password"><p>Password</p></Label>
-                <InputST type='password' value={data.password} height='40px' width='529px' name='password' register={register} />
+                <InputST type='password' height='40px' width='529px' name='password' register={register} />
                 <ErrorMsg content={errors.password?.message || ''} />
             </div>
             <div>
                 <Label htmlFor="confirm_password"><p>Confirm Password</p></Label>
-                <InputST type='password' value={data.confirm_password} height='40px' width='529px' name='confirm_password' register={register} />
+                <InputST type='password' height='40px' width='529px' name='confirm_password' register={register} />
                 <ErrorMsg content={errors.confirm_password ? "Passwords should match" : ""}/>
                 <ErrorMsg content={msg} />
             </div>
@@ -58,7 +53,7 @@ const PasswordForm = () => {
                 <div>
                 </div>
             </div>
-        </Form> : <Navigate to={'/'} />
+        </Form> : <Saved/>
     )
 }
 

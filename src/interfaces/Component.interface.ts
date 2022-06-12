@@ -5,6 +5,7 @@ export interface Props {
     className?: string
     name?: string
     value?: string
+    pd?: boolean
     onChange?: ChangeEventHandler<HTMLInputElement>
     register?: any
     type?: string

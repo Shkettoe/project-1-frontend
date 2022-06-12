@@ -57,6 +57,11 @@ const NavBar = () => {
 }
 
 const AnchorContainer = styled.div`
+  & div{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
   width: auto !important;
 `
 

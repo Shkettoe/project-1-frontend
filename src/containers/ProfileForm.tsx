@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Navigate, NavLink } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
-import { Form, Label, InputST } from '../assets/FormElements.style'
+import { Form, Label, InputST, Subtitle } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
+import Saved from '../components/Saved'
 import { Validate } from '../helpers/ValidateProfileEdit.helper'
 import { GetMe } from '../services/Me.service'
 import ErrorMsg from '../validation/ErrorMsg'
@@ -33,6 +34,7 @@ const ProfileForm = () => {
 
     return (!red ?
         <Form onSubmit={submit}>
+            <Subtitle>Change your profile settings</Subtitle>
             <div>
                 <Label htmlFor="email"><p>Email</p></Label>
                 <InputST value={data.email} height='40px' width='529px' name='email' register={register} />
@@ -77,7 +79,7 @@ const ProfileForm = () => {
                 <div>
                 </div>
             </div>
-        </Form> : <Navigate to={'/'} />
+        </Form> : <Saved/>
     )
 }
 

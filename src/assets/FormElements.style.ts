@@ -26,7 +26,6 @@ export const FormContainer = styled.div`
 `
 
 export const Form = styled.form`
-  margin: 20px 10px;
   & div{
     margin-top: 8px;
     & div {
@@ -45,9 +44,16 @@ export const Form = styled.form`
   }
 `
 
+export const Subtitle = styled.p`
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 20px
+`
+
 export const Label = styled.label`
   font-size: 12px;
   line-height: 14px;
+  font-weight: 500;
   & p:nth-child(1){
     margin: 6px 0px;
     width: 25%;
