@@ -22,31 +22,38 @@ export const FormContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 16px;
 `
 
 export const Form = styled.form`
-  margin: 20px 10px;
   & div{
     margin-top: 8px;
     & div {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      flex-direction: row;
-      gap: 16px;
-      justify-content: space-between;
       & div{
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        display: block;
+        margin-right: 22px;
+        display: flex;
+        flex-direction: column;
+        & p {
+          min-width: 100%;
+        }
       }
     }
   }
 `
 
+export const Subtitle = styled.p`
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 20px
+`
+
 export const Label = styled.label`
   font-size: 12px;
   line-height: 14px;
+  font-weight: 500;
   & p:nth-child(1){
     margin: 6px 0px;
     width: 25%;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
+import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
 import { Quote } from '../interfaces/models/Quote.interface'
 
 export const PostsHelper = () => {
@@ -23,6 +23,17 @@ export const MostUpvoted = (limit: number) => {
     }, [])
 
     return {quotes}
+}
+
+export const RecentQuotes = (limit: number) => {
+    const [recent, setRecent] = useState([])
+    useEffect(()=>{
+        (async()=>{
+            setRecent(await QuotesRecent(limit))
+        })()
+    }, [])
+
+    return {recent}
 }
 
 export const RandomQuoteHelper = () => {

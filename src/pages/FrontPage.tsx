@@ -5,7 +5,6 @@ const img = require('../assets/images/qotd.png')
 
 const FrontPage = () => {
     const user = useSelector((state: any) => state?.user.value)
-
     return (!user ? 
         <LoggedOut img={img} pic={pic}/> : <LoggedIn/>
     )

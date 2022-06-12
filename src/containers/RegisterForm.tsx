@@ -7,17 +7,18 @@ import { ButtonST } from '../assets/Button.style'
 import { Form, InputST, Label } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 import { Validate } from '../helpers/ValidateRegisterData.helper'
+import { RegisterInterface } from '../interfaces/models/Auth.interface'
 import { setUser } from '../interfaces/models/reducers/User.reducer'
 import { GetMe } from '../services/Me.service'
 import ErrorMsg from '../validation/ErrorMsg'
 import { RegisterSchema } from '../validation/schemas/Register.schema'
 
 const RegisterForm = () => {
-  const [msg, setMsg] = useState("0")
+  const [msg, setMsg] = useState(" ")
   const [red, setRed] = useState(false)
   const dispatch = useDispatch()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<{email: string, first_name: string, last_name: string, password: string, confirm_password: string}>({
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterInterface>({
     resolver: yupResolver(RegisterSchema)
   })
 
@@ -36,7 +37,7 @@ const RegisterForm = () => {
     }
   }, [msg])
 
-  return (red ?
+  return (!red ?
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>

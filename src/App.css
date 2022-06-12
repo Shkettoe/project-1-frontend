@@ -22,6 +22,12 @@ body, #root{
 #root{
     min-height: 100vh;
     font-family: Raleway;
+    overflow: hidden;
+}
+
+a{
+    padding: 0px !important;
+    margin: 0px !important;
 }
 
 .footer {

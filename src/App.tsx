@@ -1,28 +1,29 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Input from './components/Input'
 import { setUser } from './interfaces/models/reducers/User.reducer'
 import Wrap from './layouts/Wrap'
 import FrontPage from './pages/FrontPage'
 import Login from './pages/Login'
+import ProfilePage from './pages/ProfilePage'
 import Register from './pages/Register'
-import Test from './pages/Test'
 import { GetMe } from './services/Me.service'
 
 const App = () => {
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
     (async() => {
       const {data} = await GetMe()
-      dispatch(setUser(data))
+      await dispatch(setUser(data))
+      setLoading(true)
     })()
-  },[])
+  },[dispatch])
   
-  return (
-    <Wrap>
+  return (!loading ? (<div></div>) :
+    (<Wrap>
       {/* <div>
         <p>
           <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
@@ -32,10 +33,13 @@ const App = () => {
       <Routes>
         <Route path='' element={<FrontPage/>}/>
         <Route path='home' element={<FrontPage/>}/>
+        <Route path='settings' element={<ProfilePage/>}/>
+        <Route path='settings/password' element={<ProfilePage/>}/>
+        <Route path='settings/avatar' element={<ProfilePage/>}/>
         <Route path='register' element={<Register />} />
         <Route path='login' element={<Login/>} />
       </Routes>
-    </Wrap>
+    </Wrap>)
   )
 }
 
