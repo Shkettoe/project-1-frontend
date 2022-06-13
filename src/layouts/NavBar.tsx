@@ -21,7 +21,7 @@ const NavBar = () => {
         <NavLink to={'/settings'}><ButtonST content='Settings' style={ButtonVars.head} /></NavLink>
         <NavLink to={'/login'} onClick={() => {Logout(); dispatch(unsetUser())}}><ButtonST content='Logout' style={ButtonVars.head}/></NavLink>
         <NavLink style={{"display" : "flex", "alignItems": "center", "marginRight": "24px"}} to={'/home'}><ImgST url={user.avatar} width={ImgVars.medium} /></NavLink>
-        <NavLink to={'/'}><ImgST url={plus} width={ImgVars.small}/></NavLink>
+        <NavLink to={'/myquote'}><ImgST url={plus} width={ImgVars.small}/></NavLink>
     </div>
   </AnchorContainer>
 

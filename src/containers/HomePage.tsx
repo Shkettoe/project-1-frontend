@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Content, Grid, Heading, OrangeText, Grid2 } from '../assets/Common.style'
@@ -6,7 +6,6 @@ import { ButtonVars } from '../assets/Vars'
 import QuoteCard from '../components/QuoteCard'
 import { MostUpvoted, PostsHelper, RandomQuoteHelper, RecentQuotes } from '../helpers/Posts.helper'
 import { Quote } from '../interfaces/models/Quote.interface'
-import { QuotesRecent, QuotesScoreDesc } from '../services/Posts.get'
 
 const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
     const {quotes} = PostsHelper()

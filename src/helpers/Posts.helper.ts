@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
+import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
 import { Quote } from '../interfaces/models/Quote.interface'
+import { PostRequest } from "../services/PostRequest.service"
 
 export const PostsHelper = () => {
     const [quotes, setQuotes] = useState([])
@@ -36,7 +37,7 @@ export const RecentQuotes = () => {
     const [recent, setQuotes] = useState([])
     useEffect(()=>{
         (async () => {
-            const qts = await QuotesScoreDesc(limit)
+            const qts = await QuotesRecent(limit)
             setQuotes(qts)
         })()
     }, [limit])
@@ -68,4 +69,14 @@ export const RandomQuoteHelper = () => {
     }, [])
 
     return {quote}
+}
+
+export const PostPost = async (data: {content: string}) => {
+    let msg = ""
+    const setMsg = (m: string) => msg = m
+
+    const res = await PostRequest('posts/myquote', data)
+    setMsg(res.response?.data?.message || "")
+    
+    return {msg, res}
 }
