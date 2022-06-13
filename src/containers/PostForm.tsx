@@ -5,7 +5,7 @@ import { Navigate, NavLink, useLocation } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Form, Subtitle, TextAreaSt } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
-import { PostPost } from '../helpers/Posts.helper'
+import { PatchPost, PostPost } from '../helpers/Posts.helper'
 import ErrorMsg from '../validation/ErrorMsg'
 import { PostSchema } from '../validation/schemas/Post.schema'
 
@@ -20,14 +20,23 @@ const PostForm = () => {
 
     const submit = handleSubmit(async (data, event) => {
         event?.preventDefault()
-        const {msg} = await PostPost(data)
-        if(msg.length) return setErr(msg)
-        setRed(true)
+        if(location === "myquote"){
+            const {msg} = await PostPost(data)
+            if(msg.length) return setErr(msg)
+            setRed(true)
+        } else {
+            const {content} = data
+            const id = parseInt(location)
+            console.log(id, content)
+            const {msg} = await PatchPost({id, content})
+            if(msg.length) return setErr(msg)
+            setRed(true)
+        }
     } )
 
     return (!red ?
         <Form onSubmit={submit}>
-            <Subtitle>{location === "myquote" && <>You can post quotes. You can delete them on your profile.</>}</Subtitle>
+            <Subtitle>{location === "myquote" ? <>You can post quotes. You can delete them on your profile.</> : <></>}</Subtitle>
             <TextAreaSt cols={70} {...register('content')} name="content" rows={5}>{}</TextAreaSt>
             <ErrorMsg content={errors.content?.message || ""} />
             <div style={{ "marginTop": "16px" }}>

@@ -38,6 +38,7 @@ const App = () => {
         <Route path='settings/password' element={<ProfilePage/>}/>
         <Route path='settings/avatar' element={<ProfilePage/>}/>
         <Route path='myquote' element={<PostPage/>}/>
+        <Route path='myquote/:id' element={<PostPage/>}/>
         <Route path='register' element={<Register />} />
         <Route path='login' element={<Login/>} />
       </Routes>

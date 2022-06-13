@@ -114,7 +114,7 @@ like.</p>
             <Grid2 style={{"marginBottom": "52px"}}>
                 {recent.map((q: any) => {
                     return (
-                        <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.content} score={q.score} />
+                        <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.id + q.content} score={q.score} />
                     )
                 })}
             </Grid2>

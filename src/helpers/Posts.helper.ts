@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.get"
 import { Quote } from '../interfaces/models/Quote.interface'
 import { PostRequest } from "../services/PostRequest.service"
+import { PatchRequest } from "../services/PatchRequest.service"
+import { idText } from "typescript"
 
 export const PostsHelper = () => {
     const [quotes, setQuotes] = useState([])
@@ -78,5 +80,17 @@ export const PostPost = async (data: {content: string}) => {
     const res = await PostRequest('posts/myquote', data)
     setMsg(res.response?.data?.message || "")
     
+    return {msg, res}
+}
+
+export const PatchPost = async (d: {id: number, content: string}) => {
+    let msg = ""
+    const setMsg = (m: string) => msg = m
+
+    const {id, content} = d
+
+    const res = await PatchRequest(`posts/myquote/${id}`, {content})
+    setMsg(res.response?.data?.message || "")
+
     return {msg, res}
 }
