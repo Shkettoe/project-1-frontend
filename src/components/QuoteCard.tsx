@@ -46,9 +46,9 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id
   return (
     <Card>
         <div>
-            <Vote color={vote} className='vote' onClick={()=>auth && upvote(id)} src={orangeupvote} alt="upvote" />
+            <Vote color={vote} className='vote' onClick={()=>auth ? upvote(id) : window.location.replace('/register')} src={orangeupvote} alt="upvote" />
             <p>{scor}</p>
-            <Vote color={vote} className='vote' onClick={()=>auth && downvote(id)} src={orangedownvote} alt="downvote" />
+            <Vote color={vote} className='vote' onClick={()=>auth ? downvote(id) : window.location.replace('/register')} src={orangedownvote} alt="downvote" />
         </div>
         <div>
             <div>
@@ -61,6 +61,7 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id
 }
 
 const Card = styled.div`
+    background-color: white;
     display: flex;
     flex-direction: row;
     align-self: stretch;

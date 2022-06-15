@@ -3,9 +3,6 @@ import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.ge
 import { Quote } from '../interfaces/models/Quote.interface'
 import { PostRequest } from "../services/PostRequest.service"
 import { PatchRequest } from "../services/PatchRequest.service"
-import { useDispatch } from "react-redux"
-import { GetMe } from "../services/Me.service"
-import { setUser } from "../interfaces/models/reducers/User.reducer"
 
 export const PostsHelper = () => {
     const [quotes, setQuotes] = useState([])
@@ -67,7 +64,6 @@ export const RandomQuoteHelper = () => {
     useEffect(() => {
         (async () => {
             const quote = await RandomQuote()
-            console.log(quote)
             setQuote(quote)
         })()
     }, [])

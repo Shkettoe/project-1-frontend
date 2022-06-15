@@ -37,7 +37,7 @@ const PostForm = () => {
     return (!red ?
         <Form onSubmit={submit}>
             <Subtitle>{location === "myquote" ? <>You can post quotes. You can delete them on your profile.</> : <></>}</Subtitle>
-            <TextAreaSt cols={70} {...register('content')} name="content" rows={5}>{}</TextAreaSt>
+            <TextAreaSt {...register('content')} name="content">{}</TextAreaSt>
             <ErrorMsg content={errors.content?.message || ""} />
             <div style={{ "marginTop": "16px" }}>
                 <ErrorMsg content={err} />
