@@ -1,30 +1,59 @@
-import React from 'react'
-import upvote from '../assets/icons/upvote.svg'
-import downvote from '../assets/icons/downvote.svg'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ImgST } from '../assets/Img.style'
 import { ImgVars } from '../assets/Vars'
-
+import orangeupvote from '../assets/icons/upvoteorange.png'
+import orangedownvote from '../assets/icons/downvoteorange.png'
+import { Downvote, Upvote } from '../helpers/Posts.helper'
+import { useDispatch } from 'react-redux'
+import { GetMe } from '../services/Me.service'
+import { setUser } from '../interfaces/models/reducers/User.reducer'
 
 interface Props{
+    id?: number,
     content: string,
     author: string,
     score: number,
     img?: string,
+    vote?: string,
+    auth?: boolean
 }
 
-const QuoteCard: React.FC<Props> = ({content, score, author, img}) => {
+const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id}) => {
+    const [scor, setScor] = useState(0)
+    useEffect(() => {
+        setScor(score)
+    }, [score])
+    const dispatch = useDispatch()
+    const upvote = async (id?: number) =>{
+        const {msg, res} = await Upvote(id)
+        if(!msg.length){
+            const { data } = await GetMe()
+            dispatch(setUser(data))
+            return setScor(res.data.score)
+        }
+        alert("You can't like your own quotes")
+    }
+    const downvote = async (id?: number) => {
+        const {msg, res} = await Downvote(id)
+        if(!msg.length){
+            const { data } = await GetMe()
+            dispatch(setUser(data))
+            return setScor(res.data.score)
+        }
+        alert("You can't dislike your own quotes")
+    }
   return (
     <Card>
         <div>
-            <img src={upvote} alt="logo.svg" />
-            <p>{score}</p>
-            <img src={downvote} alt="" />
+            <Vote color={vote} className='vote' onClick={()=>auth && upvote(id)} src={orangeupvote} alt="upvote" />
+            <p>{scor}</p>
+            <Vote color={vote} className='vote' onClick={()=>auth && downvote(id)} src={orangedownvote} alt="downvote" />
         </div>
         <div>
             <div>
                 <p>{content}</p>
-                <p><ImgST width={ImgVars.small} url={img}/> {author}</p>
+                <p><ImgST width={ImgVars.small} url={img}/>{author}</p>
             </div>
         </div>
     </Card>
@@ -61,6 +90,13 @@ const Card = styled.div`
                 vertical-align: middle;
             }
         }
+    }
+`
+
+const Vote = styled.img`
+    filter: ${props => props.color === props.alt ? "brightness(100%)" : "brightness(0%)"};
+    &:hover{
+        filter: ${props => props.color === props.alt ? "brightness(0%)" : "brightness(100%)"};
     }
 `
 

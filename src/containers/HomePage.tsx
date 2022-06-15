@@ -1,4 +1,5 @@
-import React, {  } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Content, Grid, Heading, OrangeText, Grid2 } from '../assets/Common.style'
@@ -6,6 +7,8 @@ import { ButtonVars } from '../assets/Vars'
 import QuoteCard from '../components/QuoteCard'
 import { MostUpvoted, PostsHelper, RandomQuoteHelper, RecentQuotes } from '../helpers/Posts.helper'
 import { Quote } from '../interfaces/models/Quote.interface'
+import { User } from '../interfaces/models/User.interface'
+import { Vote } from '../interfaces/models/Vote.interface'
 
 const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
     const {quotes} = PostsHelper()
@@ -33,49 +36,9 @@ const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
             <Grid2>
                 {quotes.map((q: Quote) => {
                     return (
-                        <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.content} score={q.score} />
+                        <QuoteCard key={q.id} img={q.user?.avatar} author={q.author} content={q.content} score={q.score} />
                     )
                 })}
-            </Grid2>
-            <h1 style={{ 'fontSize': "32px", "marginTop": "124px" }}><OrangeText>Other Quotes</OrangeText></h1>
-            <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Other quotes from other sources</p>
-            <Grid2>
-                <QuoteCard img={pic} author='f' score={777} content='https://images8.alphacoders.com/433/433731.jpg' />
-                <QuoteCard img={pic} author="unknown" score={1921680144} content="…………………………………………. ………………………………….,-~~”””’~~–,,_
-………………………………………….. …………………………….,-~”-,:::::::::::::::::::”-,
-………………………………………….. ………………………..,~”::::::::’,::::::: :::::::::::::|’,
-………………………………………….. ………………………..|::::::,-~”’___””~~–~”’:}
-………………………………………….. ………………………..’|:::::|: : : : : : : : : : : : : :
-………………………………………….. ………………………..|:::::|: : :-~~—: : : —–: |
-………………………………………….. ……………………….(_”~-’: : : : : : : : :
-………………………………………….. ………………………..”’~-,|: : : : : : ~—’: : : :,’–never gonna
-………………………………………….. ……………………………|,: : : : : :-~~–: : ::/ —–give you up!
-………………………………………….. ……………………….,-”\’:\: :’~,,_: : : : : _,-’
-………………………………………….. ………………….__,-’;;;;;\:”-,: : : :’~—~”/|
-………………………………………….. ………….__,-~”;;;;;;/;;;;;;;\: :\: : :____/: :’,__
-………………………………………….. .,-~~~””_;;;;;;;;;;;;;;;;;;;;;;;;;’,. .”-,:|:::::::|. . |;;;;”-,__
-…………………………………………../;;;;;;;;;;;;;;;;;;;;;;;;;;;;,;;;;;;;;;\. . .”|::::::::|. .,’;;;;;;;;;;”-,
-…………………………………………,’ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;|;;;;;;;;;;;\. . .\:::::,’. ./|;;;;;;;;;;;;;|
-………………………………………,-”;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\;;;;;;;;;;;’,: : __|. . .|;;;;;;;;;,’;;|
-…………………………………….,-”;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;’,;;;;;;; ;;;; \. . |:::|. . .”,;;;;;;;;|;;/
-……………………………………/;;;;;;;;;;;;;;;;;;;;;;;;;;|;;;;;;;;;;;;;;\;;;;;;;; ;;;\. .|:::|. . . |;;;;;;;;|/
-…………………………………./;;,-’;;;;;;;;;;;;;;;;;;;;;;,’;;;;;;;;;;;;;;;;;,;;;;;;; ;;;|. .\:/. . . .|;;;;;;;;|
-…………………………………/;;;;;;;;;;;;;;;;;;;;;;;;;;,;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;”,: |;|. . . . \;;;;;;;|
-………………………………,~”;;;;;;;;;; ;;;;;;;;;;;,-”;;;;;;;;;;;;;;;;;;;;;;;;;;\;;;;;;;;|.|;|. . . . .|;;;;;;;|
-…………………………..,~”;;;;;;;;;;;;;; ;;;;;;;;,-’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;’,;;;;;;| |:|. . . . |\;;;;;;;|
-………………………….,’;;;;;;;;;;;;;;;;; ;;;;;;;/;;;,-’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,;;;;;| |:|. . . .’|;;’,;;;;;|
-…………………………|;,-’;;;;;;;;;;;;;;;;;;;,-’;;;,-’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,;;;;| |:|. . .,’;;;;;’,;;;;|_
-…………………………/;;;;;;;;;;;;;;;;;,-’_;;;;;;,’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;|;;; ;|.|:|. . .|;;;;;;;|;;;;|””~-,
-………………………./;;;;;;;;;;;;;;;;;;/_”,;;;,’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ,;;| |:|. . ./;;;;;;;;|;;;|;;;;;;|-,,__
-……………………../;;;;;;;;;;;;;;;;;,-’…|;;,;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;| |:|._,-’;;;;;;;;;|;;;;|;;;;;;;;;;;”’-,_
-……………………/;;;;;;;;;;;;;;;;,-’….,’;;,;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;|.|:|::::”’~–~”’||;;;;;|;;;;;;;;;;,-~””~–,
-………………….,’;;;;;;;;;;;;;;;;,’……/;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;|.|:|::::::::::::::|;;;;;’,;;;;;;;;;”-,: : : : : :”’~-,:”’~~–,
-…………………/;;;;;;;;;;;;;;;,-’……,’;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;|:|:|::::::::::::::’,;;;;;;|_””~–,,-~—,,___,-~~”’__”~-
-………………,-’;;;;;;;;;;;;;;;,’……../;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;|:|:|:::::::::::::::|;;;;;;|……………… …”-,\_”-,”-,”~"/>
-                <QuoteCard img={pic} author='amogus' score={9999} content="its morbin time" />
-                <QuoteCard img={pic} author="ሐኢለ ሠላሴ" score={10000} content='ኃጢአተኛ ነፍስህ ከመዳን በላይ ናት እናም ሰላምን ወይም ሥቃይን አታውቅም ፣ የንስሐ ቅዝቃዜ ብቻ አብቅቷል ፣ ምክንያቱም ኃጢአቶችህ ከማንኛውም ተልእኮ የላቀ ስለሆነ ፣ መጨረሻው ቀርቧል ፣ የኃጢአት መርከቦች' />
-                <QuoteCard img={pic} author="Grzegorz Brzęczyszczykiewicz" score={401} content='witam wszystkich' />
-                <QuoteCard img={pic} author='Jetstream Sam' score={0} content='memoriesbrokenthetruthgoesunspokeniveevenforgottenmynameidontknowtheseasonorwhatisthereasonimstandinghereholdingmybladeadesolateplacewithoutanytraceitsonlythecoldwindifeelitsmethatispiteasistanduptighttheonlythingiknowforrealtherewillbebloodshedthemaninthemirrornodshisheadtheonlyoneleftwillrideupondragonsbackbecausethemountainsdontgivebackwhattheytakeohnotherewillbebloodsheditstheonlythingiveeverknown' />
             </Grid2>
             <Link to={"/register"}>
                 <ButtonST height='40px' width='184px' style={ButtonVars.white} content='Sign up to see more' />
@@ -85,38 +48,47 @@ const LoggedOut: React.FC<{ img: string, pic: string }> = ({ img, pic }) => {
 }
 
 export const LoggedIn = () => {
+    const {votes}: User = useSelector((state: any) => state?.user.value)
     const {quote} = RandomQuoteHelper()
     const {quotes, increaseLimitQ} = MostUpvoted()
     const {recent, increaseLimitR} = RecentQuotes()
 
+    useEffect(() => {
+        console.log(quote);
+    }, [quote])
+
+    const showPosts = (posts: Quote[]) =>
+        posts.map((q: Quote)=>{
+            let vote: string = ""
+            for (const iterator of votes) {
+                if(iterator.post?.id === q.id){
+                    vote = iterator.val ? "upvote" : "downvote"
+                }
+            }
+            return(
+                <QuoteCard id={q.id} auth={true} vote={vote} key={q.id} img={q.user?.avatar} author={q.author} content={q.content} score={q.score} />
+            )
+        })
+        
     return (
         <Content>
             <h1 style={{"marginTop": "124px"}}><OrangeText>Quote of the day</OrangeText></h1>
-            <p style={{"marginBottom": "40px"}}>Quote of the day is a randomly chosen quote</p>
+            <p>Quote of the day is a randomly chosen quote</p>
             <Grid2>
                 <div></div>
-                <QuoteCard author={quote.author} content={quote.content} score={quote.score} img={quote.user.avatar} />
+                <QuoteCard vote='' auth={true} id={quote.id} author={quote.author} content={quote.content} score={quote.score} img={quote.user?.avatar} />
             </Grid2>
             <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most Upvoted Quotes</OrangeText></h1>
             <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Most upvoted quotes on the platform. Sign up or login to like the quotes and keep them saved in your profile</p>
             <Grid2 style={{"marginBottom": "52px"}}>
-                {quotes.map((q: Quote) => {
-                    return (
-                        <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.content} score={q.score} />
-                    )
-                })}
+                {showPosts(quotes)}
             </Grid2>
             <a onClick={()=>increaseLimitQ()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
             <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most recent quotes</OrangeText></h1>
             <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Recent quotes updates as soon user adds new quote. Go ahed 
-show them that you seen the new quote and like the ones you
-like.</p>
+show them that you seen the new quote and like the ones you like.</p>
             <Grid2 style={{"marginBottom": "52px"}}>
-                {recent.map((q: any) => {
-                    return (
-                        <QuoteCard key={q.id} img={q.user.avatar} author={q.author} content={q.id + q.content} score={q.score} />
-                    )
-                })}
+                {showPosts(recent)}
             </Grid2>
             <a onClick={()=>increaseLimitR()}><ButtonST content='Load more' style={ButtonVars.white}/></a>
         </Content>

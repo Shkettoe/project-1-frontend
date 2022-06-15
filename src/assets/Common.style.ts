@@ -52,7 +52,6 @@ export const Grid2 = styled.div`
     grid-auto-rows: minmax(150px, auto);
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 80px;
 `
 
 export const Heading = styled.p`

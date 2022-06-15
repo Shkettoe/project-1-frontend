@@ -9,20 +9,25 @@ import Login from './pages/Login'
 import PostPage from './pages/PostPage'
 import ProfilePage from './pages/ProfilePage'
 import Register from './pages/Register'
+import UserPage from './pages/UserPage'
 import { GetMe } from './services/Me.service'
 
 const App = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
+  const [auth, setAuth] = useState(false)
 
-  useEffect(()=>{
-    (async() => {
-      const {data} = await GetMe()
-      await dispatch(setUser(data))
+  useEffect(() => {
+    (async () => {
+      const { data } = await GetMe()
+      if (data.id) {
+        await dispatch(setUser(data))
+        setAuth(true)
+      }
       setLoading(true)
     })()
-  },[dispatch])
-  
+  }, [dispatch])
+
   return (!loading ? (<div></div>) :
     (<Wrap>
       {/* <div>
@@ -32,15 +37,18 @@ const App = () => {
       </p>
       </div> */}
       <Routes>
-        <Route path='' element={<FrontPage/>}/>
-        <Route path='home' element={<FrontPage/>}/>
-        <Route path='settings' element={<ProfilePage/>}/>
-        <Route path='settings/password' element={<ProfilePage/>}/>
-        <Route path='settings/avatar' element={<ProfilePage/>}/>
-        <Route path='myquote' element={<PostPage/>}/>
-        <Route path='myquote/:id' element={<PostPage/>}/>
-        <Route path='register' element={<Register />} />
-        <Route path='login' element={<Login/>} />
+        <Route path='*' element={<FrontPage />} />
+        <Route path='settings' element={<ProfilePage />}>
+          <Route path='password' element={<ProfilePage />} />
+          <Route path='avatar' element={<ProfilePage />} />
+        </Route>
+        <Route path='myquote' element={<PostPage />} />
+        <Route path='myquote/:id' element={<PostPage />} />
+        <Route path='profile' element={<UserPage />} />
+        {!auth ? (<>
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
+        </>) : <></>}
       </Routes>
     </Wrap>)
   )

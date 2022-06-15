@@ -6,8 +6,9 @@ import { ImgST } from '../assets/Img.style'
 import { ButtonVars, ImgVars } from '../assets/Vars'
 import { Logout } from '../helpers/Logout.helper'
 import { unsetUser } from '../interfaces/models/reducers/User.reducer'
-import plus from '../assets/icons/plus.svg'
+import plus from '../assets/icons/whiteplus.svg'
 const logo = require('../assets/images/Logo.png')
+const whitelogo = require('../assets/images/WhiteLogo.png')
 
 const NavBar = () => {
   const location = useLocation().pathname
@@ -17,11 +18,11 @@ const NavBar = () => {
   const authBtns = () =>
   <AnchorContainer>
     <div>
-        <NavLink to={'/home'}><ButtonST content='Home' style={ButtonVars.head} /></NavLink>
-        <NavLink to={'/settings'}><ButtonST content='Settings' style={ButtonVars.head} /></NavLink>
-        <NavLink to={'/login'} onClick={() => {Logout(); dispatch(unsetUser())}}><ButtonST content='Logout' style={ButtonVars.head}/></NavLink>
-        <NavLink style={{"display" : "flex", "alignItems": "center", "marginRight": "24px"}} to={'/home'}><ImgST url={user.avatar} width={ImgVars.medium} /></NavLink>
-        <NavLink to={'/myquote'}><ImgST url={plus} width={ImgVars.small}/></NavLink>
+        <NavLink to={'/home'}><ButtonST content='Home' style={location === "/profile" ? ButtonVars.head2 : ButtonVars.head} /></NavLink>
+        <NavLink to={'/settings'}><ButtonST content='Settings' style={location === "/profile" ? ButtonVars.head2 : ButtonVars.head} /></NavLink>
+        <a href={'/'} onClick={() => {Logout(); dispatch(unsetUser())}}><ButtonST content='Logout' style={location === "/profile" ? ButtonVars.head2 : ButtonVars.head}/></a>
+        <NavLink style={{"display" : "flex", "alignItems": "center", "marginRight": "24px"}} to={'/profile'}><ImgST url={user.avatar} width={ImgVars.medium} /></NavLink>
+        <NavLink to={'/myquote'}><img src={plus} alt="plus" /></NavLink>
     </div>
   </AnchorContainer>
 
@@ -49,7 +50,7 @@ const NavBar = () => {
   return (
     <nav className='navbar'>
       <div>
-        <div><NavLink to={'/'}><ImgST url={logo} /></NavLink></div>
+        <div className='logo'><NavLink to={'/'}><ImgST url={location === '/profile' ? whitelogo : logo} /></NavLink></div>
         {user ? authBtns() : btns()}
       </div>
     </nav>

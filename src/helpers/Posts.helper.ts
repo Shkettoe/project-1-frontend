@@ -3,7 +3,9 @@ import { QuotesRecent, QuotesScoreDesc, RandomQuote } from "../services/Posts.ge
 import { Quote } from '../interfaces/models/Quote.interface'
 import { PostRequest } from "../services/PostRequest.service"
 import { PatchRequest } from "../services/PatchRequest.service"
-import { idText } from "typescript"
+import { useDispatch } from "react-redux"
+import { GetMe } from "../services/Me.service"
+import { setUser } from "../interfaces/models/reducers/User.reducer"
 
 export const PostsHelper = () => {
     const [quotes, setQuotes] = useState([])
@@ -57,16 +59,16 @@ export const RandomQuoteHelper = () => {
         author: "",
         content: "",
         score: 0,
-        user: {
-            avatar: ""
-        }
+        user: null
     }
     
     const [quote, setQuote] = useState(q)
 
     useEffect(() => {
         (async () => {
-            setQuote(await RandomQuote())
+            const quote = await RandomQuote()
+            console.log(quote)
+            setQuote(quote)
         })()
     }, [])
 
@@ -92,5 +94,25 @@ export const PatchPost = async (d: {id: number, content: string}) => {
     const res = await PatchRequest(`posts/myquote/${id}`, {content})
     setMsg(res.response?.data?.message || "")
 
+    return {msg, res}
+}
+
+export const Upvote = async (id?: number) => {    
+    let msg = ""
+    const setMsg = (m: string) => msg = m
+
+    const res = await PostRequest(`posts/${id}/upvote`)
+    setMsg(res.response?.data?.message || "")
+    
+    return {msg, res}
+}
+
+export const Downvote = async (id?: number) => {
+    let msg = ""
+    const setMsg = (m: string) => msg = m
+
+    const res = await PostRequest(`posts/${id}/downvote`)
+    setMsg(res.response?.data?.message || "")
+    
     return {msg, res}
 }

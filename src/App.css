@@ -9,6 +9,7 @@ html, body{
 }
 
 body, #root{
+    z-index: 1;
     box-sizing: border-box;
     min-height: 100vh;
     /* min-width: 100vw; */
@@ -113,14 +114,15 @@ a{
 }
 
 .navbar{
+    z-index: inherit;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: 0px;
     gap: 645px;
     left: 0px;
     right: 0px;
     top: 0px;
-
     position: absolute;
     padding: 24px 0px;
     margin: 0%;

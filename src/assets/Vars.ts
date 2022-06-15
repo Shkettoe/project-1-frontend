@@ -32,3 +32,7 @@ export const ImgVars = {
     medium: '40px',
     small: '24px'
 }
+
+export const VoteVars = {
+    active: "#"
+}
