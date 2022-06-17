@@ -70,10 +70,6 @@ export const LoggedIn = () => {
     const { quotes, increaseLimitQ } = MostUpvoted()
     const { recent, increaseLimitR } = RecentQuotes()
 
-    useEffect(() => {
-        console.log(quote);
-    }, [quote])
-
     const showPosts = (posts: Quote[]) =>
         posts.map((q: Quote) => {
             let vote: string = ""

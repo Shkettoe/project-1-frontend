@@ -17,6 +17,10 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [auth, setAuth] = useState(false)
 
+  useEffect(()=>{
+    setAuth(false)
+  },[])
+
   useEffect(() => {
     (async () => {
       const { data } = await GetMe()
