@@ -1,9 +1,10 @@
+import { User } from "./User.interface"
+
 export interface Quote{
     id: number,
-    user: {
-        avatar: string,
-    },
-    author: string,
+    user: User | null,
+    author: string | any,
     content: string,
-    score: number
+    score: number,
+    posted_at?: any
 }

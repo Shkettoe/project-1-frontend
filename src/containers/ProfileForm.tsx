@@ -16,7 +16,7 @@ const ProfileForm = () => {
     useEffect(()=>{
         (async ()=>{
             var {data} = await GetMe()
-            setData(data)
+            await setData(data)
         })()
     })
     const [msg, setMsg] = useState(" ")

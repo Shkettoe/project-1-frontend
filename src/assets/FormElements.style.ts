@@ -8,13 +8,32 @@ export const scss = css`
 export const InputST = styled(Input)`
     padding: 8px 30px 8px 24px;
     width: ${props => props.width || props.style?.width};
-    height: 24px;
+    height: ${props => props.height || "24px"};
+
+    @media (max-width: 720px) {
+      width: ${props => `${parseInt(props.width?.substring(0, props.width?.length - 2) || "420px") / 1.3}px` || `${parseInt(props.style?.width?.substring(0, props.style?.width?.length - 2) || "420px") / 1.3}px`};
+    }
 
     background: #FFFFFF;
 
     /* Orange */
     border: 2px solid #DE8667;
     border-radius: 32px;
+`
+
+export const TextAreaSt = styled.textarea`
+  padding: 24px 30px 24px 30px;
+  background: #FFFFFF;
+  resize: none;
+  height: 124px;
+  width: 529px;
+  @media (max-width: 720px){
+    width: ${529 / 1.3}px;
+  }
+
+  /* Orange */
+  border: 2px solid #DE8667;
+  border-radius: 32px;
 `
 
 export const FormContainer = styled.div`
@@ -34,6 +53,9 @@ export const Form = styled.form`
       width: 100%;
       & div{
         margin-right: 22px;
+        @media (max-width: 720px){
+          margin-right: 0px;
+        }
         display: flex;
         flex-direction: column;
         & p {

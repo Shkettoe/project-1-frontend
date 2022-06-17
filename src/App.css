@@ -1,14 +1,17 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
     /* box-sizing: border-box; */
 }
 
-html, body{
+html,
+body {
     min-height: 100vh;
 }
 
-body, #root{
+body,
+#root {
+    z-index: 1;
     box-sizing: border-box;
     min-height: 100vh;
     /* min-width: 100vw; */
@@ -19,13 +22,13 @@ body, #root{
     left: 0px;
 }
 
-#root{
+#root {
     min-height: 100vh;
     font-family: Raleway;
     overflow: hidden;
 }
 
-a{
+a {
     padding: 0px !important;
     margin: 0px !important;
 }
@@ -65,6 +68,7 @@ a{
     padding: 0px 72px;
     gap: 82px;
 
+    justify-content: center;
     /* width: 1440px; */
     height: 25px;
 
@@ -75,6 +79,121 @@ a{
     align-self: stretch;
     flex-grow: 0;
 }
+
+.h {
+    display: none;
+}
+
+.vector {
+    display: none;
+}
+
+.toggle-button {
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 30px !important;
+    height: 21px !important;
+    cursor: pointer;
+}
+
+.toggle-button .bar {
+    height: 3px !important;
+    width: 100% !important;
+    background-color: #DE8667 !important;
+    border-radius: 10px !important;
+}
+
+.white-toggle-button .bar {
+    background-color: #FFFFFF !important;
+}
+
+@media screen and (max-width:1080px) {
+    .logo {
+        justify-content: center !important;
+    }
+
+    .toggle-button {
+        display: flex !important;
+    }
+
+    .navbar {
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu {
+        display: flex !important;
+        position: absolute;
+        background-color: white;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 417px;
+        padding-bottom: 32px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu div {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        padding-bottom: 32px;
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .menu button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70vw !important;
+        height: 40px !important;
+        text-align: center;
+        margin: 0px !important;
+    }
+
+    .menu * {
+        display: flex !important;
+        gap: 15px;
+        font-size: 24px !important;
+        font-weight: 300 !important;
+    }
+
+    .menu div, .menu a, .menu p{
+        color: #111 !important;
+    }
+
+    .menu a:hover {
+        color: #DE8667 !important;
+    }
+
+    .profile {
+        order: -1;
+    }
+
+    .x {
+        order: -2;
+        margin-top: 22px;
+        margin-left: -12px;
+        cursor: pointer;
+    }
+
+    .h {
+        display: inline;
+    }
+
+    .plus {
+        display: none !important;
+    }
+
+    .vector {
+        position: absolute;
+        right: 10vw;
+    }
+}
+
 
 .footer div p {
     /* width: 1181px; */
@@ -112,24 +231,22 @@ a{
     flex-grow: 0;
 }
 
-.navbar{
-    display: flex;
-    align-items: center;
+.navbar {
+    z-index: inherit;
+    display: grid;
     padding: 0px;
     gap: 645px;
     left: 0px;
     right: 0px;
     top: 0px;
-
     position: absolute;
     padding: 24px 0px;
     margin: 0%;
     padding: 0%;
-
     height: 80px;
 }
 
-.navbar div{
+.navbar div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -138,7 +255,7 @@ a{
     margin: auto;
 }
 
-button{
+button {
     padding: 0px;
     margin: 0px;
     background: none;
@@ -146,15 +263,15 @@ button{
     text-decoration: none;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-a div{
+a div {
     color: #322D38;
 }
 
-.navbar div div button{
+.navbar div div button {
     /* Login */
 
     margin: 10px;
@@ -165,7 +282,7 @@ a div{
     flex-grow: 0;
 }
 
-h1{
+h1 {
     /* Sign up title */
 
     width: 420px;
@@ -187,7 +304,7 @@ h1{
     color: #322D38;
 }
 
-h6{
+h6 {
     /* Your name will appear on quotes and your public profle. */
 
     width: 420px;
