@@ -1,38 +1,327 @@
-.App {
-  text-align: center;
+* {
+    padding: 0px;
+    margin: 0px;
+    /* box-sizing: border-box; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+    min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body,
+#root {
+    z-index: 1;
+    box-sizing: border-box;
+    min-height: 100vh;
+    /* min-width: 100vw; */
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#root {
+    min-height: 100vh;
+    font-family: Raleway;
+    overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+    padding: 0px !important;
+    margin: 0px !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+    /* Footer */
+
+    /* Auto layout */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 0px;
+
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 56px;
+
+    /* Orange */
+    background: #DE8667;
+
+    /* Shadow */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 0px;
+}
+
+.footer div {
+    /* Inner section */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 72px;
+    gap: 82px;
+
+    justify-content: center;
+    /* width: 1440px; */
+    height: 25px;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.h {
+    display: none;
+}
+
+.vector {
+    display: none;
+}
+
+.toggle-button {
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 30px !important;
+    height: 21px !important;
+    cursor: pointer;
+}
+
+.toggle-button .bar {
+    height: 3px !important;
+    width: 100% !important;
+    background-color: #DE8667 !important;
+    border-radius: 10px !important;
+}
+
+.white-toggle-button .bar {
+    background-color: #FFFFFF !important;
+}
+
+@media screen and (max-width:1080px) {
+    .logo {
+        justify-content: center !important;
+    }
+
+    .toggle-button {
+        display: flex !important;
+    }
+
+    .navbar {
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu {
+        display: flex !important;
+        position: absolute;
+        background-color: white;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 417px;
+        padding-bottom: 32px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu div {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        padding-bottom: 32px;
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .menu button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70vw !important;
+        height: 40px !important;
+        text-align: center;
+        margin: 0px !important;
+    }
+
+    .menu * {
+        display: flex !important;
+        gap: 15px;
+        font-size: 24px !important;
+        font-weight: 300 !important;
+    }
+
+    .menu div, .menu a, .menu p{
+        color: #111 !important;
+    }
+
+    .menu a:hover {
+        color: #DE8667 !important;
+    }
+
+    .profile {
+        order: -1;
+    }
+
+    .x {
+        order: -2;
+        margin-top: 22px;
+        margin-left: -12px;
+        cursor: pointer;
+    }
+
+    .h {
+        display: inline;
+    }
+
+    .plus {
+        display: none !important;
+    }
+
+    .vector {
+        position: absolute;
+        right: 10vw;
+    }
+}
+
+
+.footer div p {
+    /* width: 1181px; */
+    height: 14px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    /* identical to box height */
+    text-align: right;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.footer div i {
+    /* Logo icon */
+
+    font-size: 33px;
+
+    /* White */
+    color: #FFFFFF;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.navbar {
+    z-index: inherit;
+    display: grid;
+    padding: 0px;
+    gap: 645px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    padding: 24px 0px;
+    margin: 0%;
+    padding: 0%;
+    height: 80px;
+}
+
+.navbar div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+button {
+    padding: 0px;
+    margin: 0px;
+    background: none;
+    border: none;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a div {
+    color: #322D38;
+}
+
+.navbar div div button {
+    /* Login */
+
+    margin: 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+h1 {
+    /* Sign up title */
+
+    width: 420px;
+    height: 41px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    /* Dark */
+    color: #322D38;
+}
+
+h6 {
+    /* Your name will appear on quotes and your public profle. */
+
+    width: 420px;
+    height: 19px;
+
+    margin: 0px;
+    padding: 8px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    /* identical to box height */
+    text-align: center;
+
+    /* Dark */
+    color: #322D38;
 }
