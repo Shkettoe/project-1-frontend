@@ -1,24 +1,28 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
 import { ButtonST } from '../assets/Button.style'
 import { Form, Label, InputST, Subtitle } from '../assets/FormElements.style'
 import { ButtonVars } from '../assets/Vars'
 import Saved from '../components/Saved'
 import { Validate } from '../helpers/ValidateProfileEdit.helper'
+import { setUser } from '../interfaces/models/reducers/User.reducer'
 import { GetMe } from '../services/Me.service'
 import ErrorMsg from '../validation/ErrorMsg'
 import { ProfileSchema } from '../validation/schemas/Profile.schema'
 
 const ProfileForm = () => {
+    const dispatch = useDispatch()
     const [data, setData] = useState({email: "", first_name: "", last_name: ""})
     useEffect(()=>{
         (async ()=>{
             var {data} = await GetMe()
             await setData(data)
         })()
-    })
+    },[])
+    
     const [msg, setMsg] = useState(" ")
     const [red, setRed] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm<{ email: string, first_name: string, last_name: string }>({
@@ -28,6 +32,8 @@ const ProfileForm = () => {
     const submit = handleSubmit(async (data, event) => {
         event?.preventDefault()
         await setMsg(await Validate(data))
+        await dispatch(setUser(data))
+
     })
 
     useEffect(() => {if (!msg.length)setRed(true)}, [msg])

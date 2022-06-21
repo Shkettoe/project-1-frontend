@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
@@ -15,18 +16,14 @@ import { GetMe } from './services/Me.service'
 const App = () => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
-  const [auth, setAuth] = useState(false)
+  const user = useSelector((state: any) => state?.user.value)
 
-  useEffect(()=>{
-    setAuth(false)
-  },[])
 
   useEffect(() => {
     (async () => {
       const { data } = await GetMe()
       if (data.id) {
         await dispatch(setUser(data))
-        setAuth(true)
       }
       setLoading(true)
     })()
@@ -34,25 +31,21 @@ const App = () => {
 
   return (!loading ? (<div></div>) :
     (<Wrap>
-      {/* <div>
-        <p>
-          <ButtonST content='text' width='81px' style={ButtonVars.lightorange}/>
-          <InputST width='200px' />
-      </p>
-      </div> */}
       <Routes>
         <Route path='*' element={<FrontPage />} />
-        <Route path='settings' element={<ProfilePage />}>
-          <Route path='password' element={<ProfilePage />} />
-          <Route path='avatar' element={<ProfilePage />} />
-        </Route>
-        <Route path='myquote' element={<PostPage />} />
-        <Route path='myquote/:id' element={<PostPage />} />
-        <Route path='profile' element={<UserPage />} />
-        {!auth ? (<>
+        {!user ? (<>
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
-        </>) : <></>}
+        </>) : <>
+          <Route path='settings' element={<ProfilePage />}>
+            <Route path='password' element={<ProfilePage />} />
+            <Route path='avatar' element={<ProfilePage />} />
+          </Route>
+          <Route path='myquote' element={<PostPage />} />
+          <Route path='myquote/:id' element={<PostPage />} />
+          <Route path='profile' element={<UserPage />} />
+          <Route path='profile/:id' element={<UserPage />} />
+        </>}
       </Routes>
     </Wrap>)
   )

@@ -8,6 +8,11 @@ import { Downvote, Upvote } from '../helpers/Posts.helper'
 import { useDispatch } from 'react-redux'
 import { GetMe } from '../services/Me.service'
 import { setUser } from '../interfaces/models/reducers/User.reducer'
+import { Link, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import cogwheel from '../assets/icons/cogwheel.png'
+import delet from '../assets/icons/delete.png'
+import axios from 'axios'
 
 interface Props{
     id?: number,
@@ -16,10 +21,13 @@ interface Props{
     score: number,
     img?: string,
     vote?: string,
-    auth?: boolean
+    auth?: boolean,
+    user_id?: number
 }
 
-const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id}) => {
+const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id, user_id}) => {
+    const user = useSelector((state: any) => state?.user.value)
+    const location = useLocation().pathname
     const [scor, setScor] = useState(0)
     useEffect(() => {
         setScor(score)
@@ -43,6 +51,14 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id
         }
         alert("You can't dislike your own quotes")
     }
+    const deletePost = async (id?:number) =>{
+        var r = window.confirm('Are you sure about this?')
+        console.log(r)
+        if (r){
+            await axios.delete(`posts/${id}`)
+            window.location.reload()
+        }
+    }
   return (
     <Card>
         <div>
@@ -53,12 +69,32 @@ const QuoteCard: React.FC<Props> = ({content, score, author, img, vote, auth, id
         <div>
             <div>
                 <p>{content}</p>
-                <p><ImgST width={ImgVars.small} url={img}/>{author}</p>
+                {user && !location.startsWith('/profile') ?
+                    <Link to={`/profile/${user_id}`}><p><ImgST width={ImgVars.small} url={img}/>{author}</p></Link>
+                    :<p><ImgST width={ImgVars.small} url={img}/>{author}</p>
+                }
             </div>
-        </div>
+        </div>{user && user.id == user_id &&
+            <Options>
+                <Link to={`/myquote/${id}`}>
+                    <img src={cogwheel} alt="" />
+                </Link>
+                <Link to={'#'} onClick={()=>{deletePost(id)}}>
+                    <img src={delet} alt="" />
+                </Link>
+            </Options>
+        }
     </Card>
   )
 }
+
+const Options = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 26px;
+`
 
 const Card = styled.div`
     background-color: white;

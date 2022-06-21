@@ -79,7 +79,7 @@ export const LoggedIn = () => {
                 }
             }
             return (
-                <QuoteCard id={q.id} auth={true} vote={vote} key={q.id} img={q.user?.avatar} author={q.author} content={q.content} score={q.score} />
+                <QuoteCard id={q.id} user_id={q.user?.id} auth={true} vote={vote} key={q.id} img={q.user?.avatar} author={q.author} content={q.content} score={q.score} />
             )
         })
 
@@ -88,7 +88,7 @@ export const LoggedIn = () => {
             <h1 style={{ "marginTop": "124px" }}><OrangeText>Quote of the day</OrangeText></h1>
             <p>Quote of the day is a randomly chosen quote</p>
             <Content>
-                {showPosts([quote])}
+                {quote ? showPosts([quote]) : <p>Nobody posted on my app yet....</p>}
             </Content>
             <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most Upvoted Quotes</OrangeText></h1>
             <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Most upvoted quotes on the platform. Sign up or login to like the quotes and keep them saved in your profile</p>

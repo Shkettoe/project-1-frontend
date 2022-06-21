@@ -52,6 +52,11 @@
       "last 1 safari version"
     ]
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "resolutions": {
     "styled-components": "^5"
   },

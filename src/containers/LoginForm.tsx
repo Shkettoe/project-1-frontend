@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../interfaces/models/reducers/User.reducer'
 import { GetMe } from '../services/Me.service'
+import { PostRequest } from '../services/PostRequest.service'
 
 const LoginForm = () => {
   const [msg, setMsg] = useState(" ")
@@ -40,12 +41,12 @@ const LoginForm = () => {
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>
-          <InputST width='420px' name='email' register={register}/>
+          <InputST onChange={async ()=> await setMsg(" ")} width='420px' name='email' register={register}/>
           <ErrorMsg content={errors.email?.message || ''} />
         </div>
         <div>
           <Label htmlFor="password"><p>Password</p></Label>
-          <InputST width='420px' name='password' register={register} type='password' />
+          <InputST onChange={async ()=> await setMsg(" ")} width='420px' name='password' register={register} type='password' />
           <ErrorMsg content={errors.password?.message || ''} />
         </div>
         <div style={{"marginTop": "16px"}}>

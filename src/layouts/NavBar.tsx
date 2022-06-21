@@ -25,7 +25,7 @@ const NavBar = () => {
 
   const authBtns = () =>
     <AnchorContainer className={menu ? "menu" : ""}>
-      <div style={menu ? {"height": "413px"} : {"gap": "32px"}}>
+      <div className={location.startsWith('/profile') ? 'white_anchor' : ''} style={menu ? {"height": "413px"} : {"gap": "32px"}}>
         <img onClick={() => setMenu(false)} src={x} alt="x" className="h x" />
         <NavLink to={'/home'}>
           Home <p className='vector'>&gt;</p>
@@ -33,13 +33,13 @@ const NavBar = () => {
         <NavLink to={'/settings'}>
           Settings <p className='vector'>&gt;</p>
         </NavLink>
-        <NavLink to={'/'} onClick={() => { Logout(); dispatch(unsetUser()) }}>
+        <NavLink to={'/login'} onClick={() => { Logout(); dispatch(unsetUser()) }}>
           Logout <p className='vector'>&gt;</p>
         </NavLink>
         <NavLink className="profile" style={{ "display": "flex", "alignItems": "center", "marginRight": "24px" }} to={'/profile'}>
           <ImgST url={user.avatar} width={ImgVars.medium} /><p className='h'>{user.first_name} {user.last_name}</p>
         </NavLink>
-        <NavLink className={"plus"} to={''}><img src={plus} alt="plus" /></NavLink>
+        <NavLink className={"plus"} to={'myquote'}><img src={plus} alt="plus" /></NavLink>
       </div>
     </AnchorContainer>
 
@@ -85,12 +85,12 @@ const NavBar = () => {
   return (
     <nav className='navbar'>
       <div>
-        <div onClick={() => setMenu(true)} className={location === "/profile" ? "toggle-button white-toggle-button" : "toggle-button"}>
+        <div onClick={() => setMenu(true)} className={location.startsWith("/profile") ? "toggle-button white-toggle-button" : "toggle-button"}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <div className='logo'><NavLink to={'/'}><ImgST url={location === '/profile' ? whitelogo : logo} /></NavLink></div>
+        <div className='logo'><NavLink to={'/'}><ImgST url={location.startsWith('/profile') ? whitelogo : logo} /></NavLink></div>
         {user ? authBtns() : btns()}
         {user && (<NavLink className="h" to={'/myquote'}><img src={plus} alt="plus" /></NavLink>)}
       </div>
@@ -114,6 +114,11 @@ const AnchorContainer = styled.div`
   & a {
     color: #DE8667;
   }
+
+  .white_anchor a {
+    color: #fff !important;
+  }
+
   width: auto !important;
 `
 

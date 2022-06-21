@@ -9,7 +9,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux';
 import UserReducer from './interfaces/models/reducers/User.reducer';
 
-axios.defaults.baseURL = 'http://localhost:8000/'
+axios.defaults.baseURL = process.env.REACT_APP_URL
 axios.defaults.withCredentials = true
 
 const store = configureStore({

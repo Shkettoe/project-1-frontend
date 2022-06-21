@@ -1,40 +1,55 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Content, Grid2, OrangeText } from '../assets/Common.style'
 import { ImgST } from '../assets/Img.style'
 import { ImgVars } from '../assets/Vars'
 import QuoteCard from '../components/QuoteCard'
+import { GetHelp } from '../helpers/Get.helper'
 import { Quote } from '../interfaces/models/Quote.interface'
 import { User } from '../interfaces/models/User.interface'
 import { Vote } from '../interfaces/models/Vote.interface'
+import { Get } from '../services/Get.request'
 
 const UserPage = () => {
+    const params = useParams()
     const [karma, setKarma] = useState(0)
-    const user = useSelector((state: {user: {value: User}}) => state?.user.value)
-    const [recent, setRecent] = useState([...user.posts])
-    const [mostLiked, setMostLiked] = useState([...user.posts])
-
+    const [user, setUser] = useState<User | null>(null)
+    const me = useSelector((state: {user: {value: User}}) => state?.user.value)
+    const [recent, setRecent] = useState<Quote[] | []>([])
+    const [mostLiked, setMostLiked] = useState<Quote[] | []>([])
     useEffect(()=>{
         (async ()=>{
-            setRecent(p => p.reverse())
-            setMostLiked(p => p.sort((a, b)=>b.score-a.score))
-            setKarma(0)
-            await user.posts.map((p: Quote) => {
-                setKarma(pk => pk + p.score)
-                return
-            })
+            try{
+                setUser(params.id ? await Get('users/', params.id || "") : me)
+            }
+            catch(err){
+                console.log(err)
+            }
+            if(user){
+                setRecent([...user?.posts])
+                setMostLiked([...user?.posts])
+                setRecent(p => p.reverse())
+                setMostLiked(p => p.sort((a, b)=>b.score-a.score))
+                setKarma(0)
+                await user?.posts.map((p: Quote) => {
+                    setKarma(pk => pk + p.score)
+                    return
+                })
+            }
         })()
-    }, [])
+    }, [user])
 
     return (
         <Content style={{"marginTop": "120px"}}>
             <Orange />
-            <ImgST width={ImgVars.large} url={user.avatar} />
-            <Name>{user.first_name} {user.last_name}</Name>
+            <ImgST width={ImgVars.large} url={user?.avatar} />
+            <Name>{user?.first_name} {user?.last_name}</Name>
             <ScoreGrid>
                 <div>Quotes
-                    <p><OrangeText>{user.posts.length}</OrangeText></p>
+                    <p><OrangeText>{user?.posts.length}</OrangeText></p>
                 </div>
                 <div>Quotastic Karma
                     <p>{karma}</p>
@@ -43,26 +58,26 @@ const UserPage = () => {
             <Grid2>
                 <div>
                     <ListHeading><OrangeText>Most liked quotes</OrangeText></ListHeading>
-                    {mostLiked.map((q: Quote) => {
+                    {mostLiked.map((q: Partial<Quote>) => {
                         return (
-                            <QuoteCard key={q.id} img={user.avatar} author={q.author} content={q.content} score={q.score} />
+                            <QuoteCard id={q.id} user_id={!params.id ? user?.id : undefined} key={q.id} img={user?.avatar} author={user?.first_name + " " + user?.last_name} content={q.content || ""} score={q.score || 0} />
                         )
                     })}
                 </div>
                 <div>
                     <ListHeading>Most recent</ListHeading>
-                    {recent.map((q: Quote) => {
+                    {recent.map((q: Partial<Quote>) => {
                         return (
-                            <QuoteCard key={q.id} img={user.avatar} author={q.author} content={q.content} score={q.score} />
+                            <QuoteCard id={q.id} user_id={!params.id ? user?.id : undefined} key={q.id} img={user?.avatar} author={user?.first_name + " " + user?.last_name} content={q.content || ""} score={q.score || 0} />
                         )
                     })}
                 </div>
                 <div>
                     <ListHeading>Liked</ListHeading>
-                    {user.votes.map((v: Vote)=>{
+                    {user?.votes.map((v: Vote)=>{
                         if(v.val)
                         return(
-                            <QuoteCard vote='upvote' id={v.post?.id} key={v.post?.id} img={v.post?.user?.avatar} author={v.post?.author || ""} content={v.post?.content || ""} score={v.post?.score || 0} />
+                            <QuoteCard user_id={v.post?.user?.id} vote='upvote' id={v.post?.id} key={v.post?.id} img={v.post?.user?.avatar} author={`${v.post?.user?.first_name} ${v.post?.user?.last_name}`} content={v.post?.content || ""} score={v.post?.score || 0} />
                         )
                     })}
                 </div>
