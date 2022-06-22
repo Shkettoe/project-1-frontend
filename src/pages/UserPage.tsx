@@ -21,13 +21,18 @@ const UserPage = () => {
     const [recent, setRecent] = useState<Quote[] | []>([])
     const [mostLiked, setMostLiked] = useState<Quote[] | []>([])
     useEffect(()=>{
-        (async ()=>{
+        (async ()=> {
             try{
                 return setUser(params.id ? await Get('users/', params.id || "") : me)
             }
             catch(err){
                 console.log(err)
             }
+        })()
+    }, [])
+    useEffect(()=>{
+        (async ()=>{
+            
             if(user){
                 setRecent([...user?.posts])
                 setMostLiked([...user?.posts])
