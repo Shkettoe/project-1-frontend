@@ -23,7 +23,7 @@ const UserPage = () => {
     useEffect(()=>{
         (async ()=>{
             try{
-                setUser(params.id ? await Get('users/', params.id || "") : me)
+                return setUser(params.id ? await Get('users/', params.id || "") : me)
             }
             catch(err){
                 console.log(err)
