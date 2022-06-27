@@ -1,0 +1,21 @@
+p{
+    font-size: 22px;
+    font-weight: 500;
+    color: #777;
+}
+
+.loading {
+    width: 67px;
+    height: 67px;
+    margin-top: 220px;
+    border: 5px solid rgba(50,50,50, 0.2);
+    border-radius: 50%;
+    border-top-color: #111;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100%{
+        transform: rotate(360deg);
+    }
+}

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import { setUser } from './interfaces/models/reducers/User.reducer'
+import Loading from './layouts/Loading'
 import Wrap from './layouts/Wrap'
 import FrontPage from './pages/FrontPage'
 import Login from './pages/Login'
@@ -29,7 +30,7 @@ const App = () => {
     })()
   }, [dispatch])
 
-  return (!loading ? (<div></div>) :
+  return (!loading ? (<Loading/>) :
     (<Wrap>
       <Routes>
         <Route path='*' element={<FrontPage />} />
