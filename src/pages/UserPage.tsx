@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -29,7 +28,7 @@ const UserPage = () => {
                 console.log(err)
             }
         })()
-    }, [])
+    }, [params])
     useEffect(()=>{
         (async ()=>{
             
