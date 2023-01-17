@@ -17,37 +17,37 @@ export const PostsHelper = () => {
 }
 
 export const MostUpvoted = () => {
-    const [limit, setLimit] = useState(3)
+    const [muLimit, setLimit] = useState(3)
     const [quotes, setQuotes] = useState([])
     useEffect(()=>{
         (async () => {
-            const qts = await QuotesScoreDesc(limit)
+            const qts = await QuotesScoreDesc(muLimit)
             setQuotes(qts)
         })()
-    }, [limit])
+    }, [muLimit])
 
     const increaseLimitQ = () =>{
         setLimit(prevLimit => prevLimit + 3)
     }
 
-    return {quotes, increaseLimitQ};
+    return {quotes, increaseLimitQ, muLimit};
 }
 
 export const RecentQuotes = () => {
-    const [limit, setLimit] = useState(3)
+    const [recentLimit, setLimit] = useState(3)
     const [recent, setQuotes] = useState([])
     useEffect(()=>{
         (async () => {
-            const qts = await QuotesRecent(limit)
+            const qts = await QuotesRecent(recentLimit)
             setQuotes(qts)
         })()
-    }, [limit])
+    }, [recentLimit])
 
     const increaseLimitR = () =>{
         setLimit(prevLimit => prevLimit + 3)
     }
 
-    return {recent, increaseLimitR};
+    return {recent, increaseLimitR, recentLimit};
 }
 
 export const RandomQuoteHelper = () => {

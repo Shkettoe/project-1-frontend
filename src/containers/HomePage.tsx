@@ -67,8 +67,8 @@ const LoggedOut: React.FC<{ img: string }> = ({ img }) => {
 export const LoggedIn = () => {
     const { votes }: User = useSelector((state: any) => state?.user.value)
     const { quote } = RandomQuoteHelper()
-    const { quotes, increaseLimitQ } = MostUpvoted()
-    const { recent, increaseLimitR } = RecentQuotes()
+    const { quotes, increaseLimitQ, muLimit } = MostUpvoted()
+    const { recent, increaseLimitR, recentLimit } = RecentQuotes()
 
     const showPosts = (posts: Quote[]) =>
         posts.map((q: Quote) => {
@@ -95,14 +95,14 @@ export const LoggedIn = () => {
             <Grid2 style={{ "marginBottom": "52px" }}>
                 {showPosts(quotes)}
             </Grid2>
-            <a onClick={() => increaseLimitQ()}><ButtonST content='Load more' style={ButtonVars.white} /></a>
+            {muLimit<= quotes.length && <a onClick={() => increaseLimitQ()}><ButtonST content='Load more' style={ButtonVars.white} /></a>}
             <h1 style={{ 'fontSize': "32px", "marginTop": "74px" }}><OrangeText>Most recent quotes</OrangeText></h1>
             <p style={{ "textAlign": "center", "fontSize": "16px", "width": "534px" }}>Recent quotes updates as soon user adds new quote. Go ahed
                 show them that you seen the new quote and like the ones you like.</p>
             <Grid2 style={{ "marginBottom": "52px" }}>
                 {showPosts(recent)}
             </Grid2>
-            <a onClick={() => increaseLimitR()}><ButtonST content='Load more' style={ButtonVars.white} /></a>
+            {recentLimit <= recent.length && <a onClick={() => increaseLimitR()}><ButtonST content='Load more' style={ButtonVars.white} /></a>}
         </Content>
     )
 }
