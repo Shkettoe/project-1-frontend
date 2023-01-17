@@ -24,8 +24,13 @@ const LoginForm = () => {
 
   const submit = handleSubmit(async (credentials, event) => {
     event?.preventDefault()
+    await setMsg(" ")
     await setMsg((await Check(credentials)).msg)
   })
+
+  useEffect(()=>{
+    setMsg(" ")
+  }, [register])
 
   useEffect(() => {
     if(!msg.length) {
@@ -41,12 +46,12 @@ const LoginForm = () => {
     <Form onSubmit={submit}>
         <div>
           <Label htmlFor="email"><p>Email</p></Label>
-          <InputST onChange={async ()=> await setMsg(" ")} width='420px' name='email' register={register}/>
+          <InputST width='420px' name='email' register={register}/>
           <ErrorMsg content={errors.email?.message || ''} />
         </div>
         <div>
           <Label htmlFor="password"><p>Password</p></Label>
-          <InputST onChange={async ()=> await setMsg(" ")} width='420px' name='password' register={register} type='password' />
+          <InputST width='420px' name='password' register={register} type='password' />
           <ErrorMsg content={errors.password?.message || ''} />
         </div>
         <div style={{"marginTop": "16px"}}>
